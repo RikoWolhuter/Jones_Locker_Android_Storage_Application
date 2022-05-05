@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/activity_main.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/add_collection.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/add_item_details.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/add_item_main.xml" value="0.358695652173913" />
@@ -14,6 +14,7 @@
         <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/profile_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/profile_main_add_photo.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/registration.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/menu/menu.xml" value="0.2861111111111111" />
       </map>
     </option>
   </component>
