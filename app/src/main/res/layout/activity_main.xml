@@ -66,6 +66,12 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/_e58023eda13d_1" />
             </ScrollView>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
         </LinearLayout>
 
     </com.google.android.material.navigation.NavigationView>
