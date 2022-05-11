@@ -46,7 +46,7 @@
                 app:iconifiedByDefault="true"
                 app:queryBackground="@android:color/transparent" />
 
-    </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
