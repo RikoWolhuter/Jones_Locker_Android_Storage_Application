@@ -10,70 +10,80 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:fillViewport="false">
+            <LinearLayout
+                android:orientation="vertical" android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="371dp"
-                android:layout_height="61dp"
-                android:background="@color/white"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:navigationIcon="@drawable/_4dp"
-                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
-                app:subtitleTextColor="#FFFFFF"
-                app:titleMargin="4dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <SearchView
-                android:id="@+id/searchView"
-                android:layout_width="wrap_content"
-                android:layout_height="61dp"
-                android:layout_alignParentRight="true"
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="371dp"
+                        android:layout_height="61dp"
+                        android:background="@color/white"
+                        android:minHeight="?attr/actionBarSize"
+                        android:theme="?attr/actionBarTheme"
+                        app:navigationIcon="@drawable/_4dp"
+                        app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
+                        app:subtitleTextColor="#FFFFFF"
+                        app:titleMargin="4dp" />
 
-                android:animateLayoutChanges="true"
+                    <SearchView
+                        android:id="@+id/searchView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="61dp"
+                        android:layout_alignParentRight="true"
+
+                        android:animateLayoutChanges="true"
 
 
-                android:background="#FFFFFF"
+                        android:background="#FFFFFF"
 
 
-                android:closeIcon="@drawable/ic_baseline_close_24"
-                android:layoutDirection="ltr"
-                android:searchHintIcon="@drawable/ic_baseline_search_24"
-                android:searchIcon="@drawable/ic_baseline_search_24"
-                android:textDirection="rtl"
-                app:iconifiedByDefault="true"
-                app:queryBackground="@android:color/transparent" />
+                        android:closeIcon="@drawable/ic_baseline_close_24"
+                        android:layoutDirection="ltr"
+                        android:searchHintIcon="@drawable/ic_baseline_search_24"
+                        android:searchIcon="@drawable/ic_baseline_search_24"
+                        android:textDirection="rtl"
+                        app:iconifiedByDefault="true"
+                        app:queryBackground="@android:color/transparent" />
 
-    </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ScrollView
-                android:id="@+id/scrollview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="@string/app_name">
+                </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/imageView4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
                     app:srcCompat="@drawable/_e58023eda13d_1" />
-            </ScrollView>
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/best_4k_cameras_for_live_streaming__2__1" />
 
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/images_1" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/career_progression_scaled_1_1" />
+
+
+            </LinearLayout>
+        </ScrollView>
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
