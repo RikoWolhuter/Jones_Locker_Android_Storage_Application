@@ -1,0 +1,44 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/activity_main.xml\" value=\"0.358695652173913\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 6e36079da72d74befa9d8549478473b7875f438f)
++++ b/.idea/misc.xml	(date 1652365615018)
+@@ -4,6 +4,16 @@
+     <option name="filePathToZoomLevelMap">
+       <map>
+         <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
++        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/add_collection.xml" value="0.358695652173913" />
++        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/add_item_details.xml" value="0.358695652173913" />
++        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/add_item_main.xml" value="0.358695652173913" />
++        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/add_photo.xml" value="0.358695652173913" />
++        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/collection_main.xml" value="0.358695652173913" />
++        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/item_details_description.xml" value="0.358695652173913" />
++        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/login.xml" value="0.358695652173913" />
++        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/profile_main.xml" value="0.358695652173913" />
++        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/profile_main_add_photo.xml" value="0.358695652173913" />
++        <entry key="..\:/Users/Riko Wolhuter/AndroidStudioProjects/OPSC_1/app/src/main/res/layout/registration.xml" value="0.358695652173913" />
+       </map>
+     </option>
+   </component>
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"GRADLE\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 6e36079da72d74befa9d8549478473b7875f438f)
++++ b/.idea/gradle.xml	(date 1652365568145)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
