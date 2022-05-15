@@ -4,7 +4,21 @@
 
     <TextView android:layout_height="72dp" android:layout_width="213dp" app:layout_constraintVertical_bias="0.132" app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.439" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:textSize="25dp" android:textColor="#090909" android:text="Add a item to the collection" android:id="@+id/textView8"/>
 
-    <EditText android:layout_height="wrap_content" android:layout_width="wrap_content" app:layout_constraintVertical_bias="0.346" app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.432" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:textColor="#807575" android:text="Add a Name" android:id="@+id/editTextTextPersonName11" android:inputType="textPersonName" android:ems="10"/>
+    <EditText
+        android:id="@+id/editTextTextPersonName11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Add a Name"
+        android:textColor="#807575"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.346"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/imageView6"
