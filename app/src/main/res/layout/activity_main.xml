@@ -59,27 +59,27 @@
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="412dp"
 
-                    app:srcCompat="@drawable/_e58023eda13d_1" />
+                    app:srcCompat="@drawable/addtext_com_mtyzmjewmtc4nzc" />
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/best_4k_cameras_for_live_streaming__2__1" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="227dp"
+                    app:srcCompat="@drawable/addtext_com_mtyxnju5mtc4nda" />
 
                 <ImageView
                     android:id="@+id/imageView7"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/images_1" />
+                    android:layout_height="232dp"
+                    app:srcCompat="@drawable/addtext_com_mtyynti5mtc4ntm" />
 
                 <ImageView
                     android:id="@+id/imageView8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/career_progression_scaled_1_1" />
+                    app:srcCompat="@drawable/addtext_com_mtyxnzuxmtc4ndi" />
 
 
             </LinearLayout>
