@@ -2,6 +2,44 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="371dp"
+            android:layout_height="61dp"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/diamond_small"
+            app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:subtitleTextColor="#000000"
+            app:titleMargin="4dp" />
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="wrap_content"
+            android:layout_height="61dp"
+            android:layout_alignParentRight="true"
+
+            android:animateLayoutChanges="true"
+
+
+            android:background="#FFFFFF"
+
+
+            android:closeIcon="@drawable/ic_baseline_close_24"
+            android:layoutDirection="ltr"
+            android:searchHintIcon="@drawable/ic_baseline_search_24"
+            android:searchIcon="@drawable/ic_baseline_search_24"
+            android:textDirection="rtl"
+            app:iconifiedByDefault="true"
+            app:queryBackground="@android:color/transparent" />
+
+    </LinearLayout>
+
     <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" app:layout_constraintVertical_bias="0.195" app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.461" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent" android:textSize="28sp" android:textColor="#0B0B0B" android:text="Collections" android:id="@+id/textView5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
