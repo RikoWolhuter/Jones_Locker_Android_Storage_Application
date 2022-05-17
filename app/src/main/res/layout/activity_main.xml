@@ -29,9 +29,9 @@
                         android:background="@color/white"
                         android:minHeight="?attr/actionBarSize"
                         android:theme="?attr/actionBarTheme"
-                        app:navigationIcon="@drawable/_4dp"
+                        app:navigationIcon="@drawable/diamond_small"
                         app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
-                        app:subtitleTextColor="#FFFFFF"
+                        app:subtitleTextColor="#000000"
                         app:titleMargin="4dp" />
 
                     <SearchView
