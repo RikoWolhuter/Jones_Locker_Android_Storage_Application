@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "54354061218",
-    "project_id": "starsucksfixed",
-    "storage_bucket": "starsucksfixed.appspot.com"
+    "project_number": "987340244766",
+    "firebase_url": "https://opsc-3b38c-default-rtdb.firebaseio.com",
+    "project_id": "opsc-3b38c",
+    "storage_bucket": "opsc-3b38c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:54354061218:android:dfdb6ecabafdb5b49534fb",
+        "mobilesdk_app_id": "1:987340244766:android:1c779dc9760ff1c64e2b0f",
         "android_client_info": {
-          "package_name": "za.ac.iie.opsc.starsucks"
+          "package_name": "com.VarsityCollege.OPSC"
         }
       },
       "oauth_client": [
         {
-          "client_id": "54354061218-hn7mi3n4bf7ok7h71afrpmhshaokb2gt.apps.googleusercontent.com",
+          "client_id": "987340244766-g0l5dr7beqslb8sl6cufvdq20qc0n2j5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCfWlN2y-uzHhQyCQPg83u8hYioaNjlQ5s"
+          "current_key": "AIzaSyDQCHfxRra8VHVqVmhjIxajVESeWmzvdis"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "54354061218-hn7mi3n4bf7ok7h71afrpmhshaokb2gt.apps.googleusercontent.com",
+              "client_id": "987340244766-g0l5dr7beqslb8sl6cufvdq20qc0n2j5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
