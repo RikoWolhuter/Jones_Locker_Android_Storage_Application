@@ -65,6 +65,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
@@ -79,15 +80,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton"
+            <TextView
+                android:gravity="center"
+                android:id="@+id/textView15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:tint="#FFFFFF"
-                app:backgroundTint="#AAAAAA"
-                app:rippleColor="#FFFFFF"
-                app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
+                android:text="Bronze"
+                android:textColor="#131313"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
