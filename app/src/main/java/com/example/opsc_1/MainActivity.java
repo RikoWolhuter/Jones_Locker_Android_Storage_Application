@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         switch(item.getItemId()){
             case R.id.nav_photo:
-                IntentHelper.openIntent(this, "", AddPhoto.class);
+                IntentHelper.openIntent(this, AddPhoto.class);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
