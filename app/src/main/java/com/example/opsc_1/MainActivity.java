@@ -24,6 +24,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.nav_photo:
                 IntentHelper.openIntent(this, AddPhoto.class);
                 break;
+            case R.id.nav_collection:
+                IntentHelper.openIntent(this, Collection.class);
+                break;
+            case R.id.nav_graph:
+                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Graph
+                break;
+            case R.id.nav_progression:
+                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Goals
+                break;
+            case R.id.nav_profile:
+                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Profile
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         //returning true marks the item as selected

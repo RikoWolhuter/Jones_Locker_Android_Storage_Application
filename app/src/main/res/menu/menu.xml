@@ -11,13 +11,21 @@
 
 />
     <group android:checkableBehavior="single" >
-        <item android:title="Collections" />
+        <item
+            android:id="@+id/nav_collection"
+            android:title="Collections" />
         <item
             android:id="@+id/nav_photo"
             android:title="Take a photo" />
-        <item android:title="Graph" />
-        <item android:title="Collection progression" />
-        <item android:title="My profile" />
+        <item
+            android:id="@+id/nav_graph"
+            android:title="Graph" />
+        <item
+            android:id="@+id/nav_progression"
+            android:title="Collection progression" />
+        <item
+            android:id="@+id/nav_profile"
+            android:title="My profile" />
     </group>
 
 </menu>
