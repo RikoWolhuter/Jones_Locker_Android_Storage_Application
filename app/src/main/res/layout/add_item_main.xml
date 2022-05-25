@@ -229,7 +229,7 @@
                     android:layout_height="20dp" />
 
                 <ListView
-                    android:id="@+id/lstv_collections"
+                    android:id="@+id/lstv_items"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 

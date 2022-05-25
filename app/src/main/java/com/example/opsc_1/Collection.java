@@ -10,10 +10,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import java.awt.font.TextAttribute;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.opsc_1.Collection;
 import com.example.opsc_1.AddCollection;
 import com.google.android.material.navigation.NavigationView;
@@ -24,6 +29,10 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
+
+    private ListView lstvCollections;
+    private List<String> collectionsList;
+    private ArrayAdapter<String> collectionAdapter;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -70,6 +79,9 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
+
+        collectionsList = new ArrayList<>();
+        lstvCollections = findViewById(R.id.lstv_collections);
 
         add = (ImageButton) findViewById(R.id.Addbtn);
 

@@ -3,6 +3,8 @@ package com.example.opsc_1;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,12 +15,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddItem extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
+
+    private ListView lstvItems;
+    private List<String> itemList;
+    private ArrayAdapter<String> itemAdapter;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -63,6 +72,9 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener, 
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
+
+        itemList = new ArrayList<>();
+        lstvItems = findViewById(R.id.lstv_items);
     }
     @Override
     public  void onClick(View v)
