@@ -55,6 +55,15 @@ public class Login extends AppCompatActivity {
     //startActivity(intent);
     //}
 
+    String encrypted = "ANY_ENCRYPTED_STRING_HERE";//Insert encrypted string here
+    String decrypted = "";
+    try {
+        decrypted = Registration.decrypt(encrypted);
+        Log.d("TEST", "decrypted:" + decrypted);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
 
 }
 
