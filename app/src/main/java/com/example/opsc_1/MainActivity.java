@@ -28,13 +28,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 IntentHelper.openIntent(this, Collection.class);
                 break;
             case R.id.nav_graph:
-                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Graph
+                IntentHelper.openIntent(this, Graph.class);
                 break;
             case R.id.nav_progression:
-                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Goals
+                IntentHelper.openIntent(this, Goal.class);
                 break;
             case R.id.nav_profile:
-                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Profile
+                IntentHelper.openIntent(this, Profile.class);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -93,10 +93,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 IntentHelper.openIntent(this, AddPhoto.class);
                 break;
             case R.id.imageView7:
-                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Graph
+                IntentHelper.openIntent(this, Graph.class);//Class must be for Graph
                 break;
             case R.id.imageView8:
-                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Goals
+                IntentHelper.openIntent(this, Goal.class);//Class must be for Goals
                 break;
         }
 

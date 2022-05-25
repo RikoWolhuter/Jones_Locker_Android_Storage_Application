@@ -22,7 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
-public class AddPhoto extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
+public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
         private FloatingActionButton fab;
         private ImageView imgCameraImage;
@@ -45,13 +45,13 @@ public class AddPhoto extends AppCompatActivity implements View.OnClickListener,
                 IntentHelper.openIntent(this, Collection.class);
                 break;
             case R.id.nav_graph:
-                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Graph
+                IntentHelper.openIntent(this, Graph.class);
                 break;
             case R.id.nav_progression:
-                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Goals
+                IntentHelper.openIntent(this, Goal.class);
                 break;
             case R.id.nav_profile:
-                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Profile
+                IntentHelper.openIntent(this, Profile.class);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -135,10 +135,7 @@ public class AddPhoto extends AppCompatActivity implements View.OnClickListener,
         }
     }
 
-    public  void onClick(View v)
-    {
 
-    }
 
 
     }

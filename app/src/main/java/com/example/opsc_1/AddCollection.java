@@ -19,7 +19,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.awt.font.TextAttribute;
 
 
-public class AddCollection extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
+public class AddCollection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -37,13 +37,13 @@ public class AddCollection extends AppCompatActivity implements View.OnClickList
                 IntentHelper.openIntent(this, Collection.class);
                 break;
             case R.id.nav_graph:
-                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Graph
+                IntentHelper.openIntent(this, Graph.class);
                 break;
             case R.id.nav_progression:
-                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Goals
+                IntentHelper.openIntent(this, Goal.class);
                 break;
             case R.id.nav_profile:
-                IntentHelper.openIntent(this, OrderDetailsActivity.class);//Class must be for Profile
+                IntentHelper.openIntent(this, Profile.class);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -102,9 +102,6 @@ public class AddCollection extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public  void onClick(View v)
-    {
 
-    }
 
 }

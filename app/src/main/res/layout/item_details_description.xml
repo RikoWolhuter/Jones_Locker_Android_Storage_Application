@@ -52,97 +52,104 @@
                     android:searchIcon="@drawable/ic_baseline_search_24"
                     android:textDirection="rtl"
                     app:iconifiedByDefault="true"
-                    app:queryBackground="@android:color/transparent" />
+                    app:queryBackground="@android:color/transparent" >
+
+                </SearchView>
 
             </LinearLayout>
 
         </com.google.android.material.navigation.NavigationView>
 
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
-                android:layout_width="411dp"
-                android:layout_height="203dp">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="411dp"
+                    android:layout_height="203dp">
 
-                <ImageView
-                    android:id="@+id/profileImage"
+                    <ImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/photo_placeholder" />
+
+                </androidx.cardview.widget.CardView>
+
+                <Space
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/photo_placeholder" />
+                    android:layout_height="20dp" />
 
-            </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lost Surfboard"
+                    android:textColor="#131313"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lost Surfboard"
-                android:textColor="#131313"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date Created:"
+                    android:textColor="#131313"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date Created:"
-                android:textColor="#131313"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2020/03/28"
+                    android:textColor="#131313"
+                    android:textSize="15sp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
 
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2020/03/28"
-                android:textColor="#131313"
-                android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:textColor="#131313"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:textColor="#131313"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="This was a surfboard that I bought from my friend in Hawaii. It is a short board. Great for big waves."
+                    android:textColor="#131313"
+                    android:textSize="15sp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+            </LinearLayout>
+        </ScrollView>
 
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:text="This was a surfboard that I bought from my friend in Hawaii. It is a short board. Great for big waves."
-                android:textColor="#131313"
-                android:textSize="15sp" />
-
-        </LinearLayout>
 
     </LinearLayout>
 
