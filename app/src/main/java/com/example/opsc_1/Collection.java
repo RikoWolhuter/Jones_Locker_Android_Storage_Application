@@ -11,16 +11,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
-import java.awt.font.TextAttribute;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.opsc_1.Collection;
-import com.example.opsc_1.AddCollection;
 import com.google.android.material.navigation.NavigationView;
 
 public class Collection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,6 +60,7 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.collection_main);
         ImageButton add;
+        ImageButton sort;
         String name;
 
         toolbar = findViewById(R.id.nav_toolbar);
@@ -84,17 +81,48 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         lstvCollections = findViewById(R.id.lstv_collections);
 
         add = (ImageButton) findViewById(R.id.Addbtn);
+        sort = (ImageButton) findViewById(R.id.Sortbtn);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openAddCollectioPage();
+                openAddCollectionPage();
             }
         });
-    }
 
-    public void openAddCollectioPage() {
+        sort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSortListviewPage();
+            }
+        });
+
+        //Here is some onclick listener code i found on the internet so that a user can view the collection item selected, just needs to be adapted to our app
+        /*
+        listView.setOnItemClickListener(new OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object o = prestListView.getItemAtPosition(position);
+                prestationEco str = (prestationEco)o; //As you are using Default String Adapter
+
+                Toast.makeText(getBaseContext(),str.getTitle(),Toast.LENGTH_SHORT).show();
+
+                openAddItemMainPage();
+            }
+        });*/
+    }
+/*
+    public void openAddItemMainPage() {
+        Intent intent = new Intent(Collection.this,AddItem.class);
+        startActivity(intent);
+    }
+    */
+    public void openAddCollectionPage() {
         Intent intent = new Intent(Collection.this,AddCollection.class);
+        startActivity(intent);
+    }
+    public void openSortListviewPage() {
+        Intent intent = new Intent(Collection.this,sortListviewCollection.class);//sort listview class for collection
         startActivity(intent);
     }
 /*

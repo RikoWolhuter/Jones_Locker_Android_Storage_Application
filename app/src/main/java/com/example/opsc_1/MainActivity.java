@@ -93,10 +93,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 IntentHelper.openIntent(this, AddPhoto.class);
                 break;
             case R.id.imageView7:
-                IntentHelper.openIntent(this, Graph.class);//Class must be for Graph
+                IntentHelper.openIntent(this, Graph.class);
                 break;
             case R.id.imageView8:
-                IntentHelper.openIntent(this, Goal.class);//Class must be for Goals
+                IntentHelper.openIntent(this, Goal.class);
                 break;
         }
 

@@ -207,7 +207,20 @@
                         android:layout_weight="1" />
 
                     <ImageButton
-                        android:id="@+id/Addbtn"
+                        android:id="@+id/Sortbtn_items"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#FFFFFF"
+                        app:srcCompat="@drawable/ic_baseline_tune_24" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <ImageButton
+                        android:id="@+id/Addbtn_items"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

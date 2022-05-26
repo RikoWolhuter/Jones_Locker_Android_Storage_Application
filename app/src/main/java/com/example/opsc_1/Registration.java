@@ -2,11 +2,14 @@ package com.example.opsc_1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.SearchView;
 
@@ -21,8 +24,25 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
 
+        Button log;
+
+        log = (Button) findViewById(R.id.goBackToLogin);
+
+        log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLoginPage();
+            }
+        });
 
     }
+
+    public void openLoginPage() {
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
+    }
+
+
 
     private static final byte[] keyValue =
             new byte[]{'c', 'o', 'd', 'i', 'n', 'g', 'a', 'f', 'f', 'a', 'i', 'r', 's', 'c', 'o', 'm'};
@@ -96,8 +116,8 @@ public class Registration extends AppCompatActivity {
         try {
         encrypted = Registration.encrypt(sourceStr);
         Log.d("TEST", "encrypted:" + encrypted);
-    } catch (Exception e) {
-        e.printStackTrace();
+    } catch {
+
     }
 
 
