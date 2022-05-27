@@ -146,6 +146,33 @@
                     android:text="This was a surfboard that I bought from my friend in Hawaii. It is a short board. Great for big waves."
                     android:textColor="#131313"
                     android:textSize="15sp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="130dp"
+                        android:layout_height="10dp" />
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="144dp"
+                        android:layout_height="63dp"
+                        android:accessibilityLiveRegion="polite"
+                        android:backgroundTint="#9A0000"
+                        android:gravity="center"
+                        android:text="Delete item"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
 
             </LinearLayout>
         </ScrollView>
