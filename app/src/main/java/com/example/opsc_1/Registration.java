@@ -1,9 +1,11 @@
 package com.example.opsc_1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -19,12 +23,28 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class Registration extends AppCompatActivity {
 
+    private GetterAndSetters getterAndsetter;
+    private TextView Username;
+    private TextView Password;
+    private TextView confirmPassword;
+    private TextView gmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
 
+        getterAndsetter = new GetterAndSetters();
+
+        Username = findViewById(R.id.username_input);
+        Password =  findViewById(R.id.password_input);
+        confirmPassword = findViewById(R.id.confirmPassword_input);
+        gmail = findViewById(R.id.gmail_input);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         Button log;
+        Button reg;
 
         log = (Button) findViewById(R.id.goBackToLogin);
 
@@ -35,9 +55,44 @@ public class Registration extends AppCompatActivity {
             }
         });
 
+        reg = (Button) findViewById(R.id.register);
+
+        reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String tempUsername = Username.getText().toString();
+                String tempPassword = Password.getText().toString();
+                String tempconfirmPassword = confirmPassword.getText().toString();
+                String tempgmail = gmail.getText().toString();
+
+
+                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword) &&
+                        !TextUtils.isEmpty(tempconfirmPassword) &&
+                        !TextUtils.isEmpty(tempgmail) && tempPassword.equals(tempconfirmPassword)) {
+                    getterAndsetter.setUsername(tempUsername);
+                    getterAndsetter.setPassword(tempPassword);
+                    getterAndsetter.setGmail(tempgmail);
+
+
+                    Register();
+                }
+                else{
+                    Toast.makeText(Registration.this, "Please complete all the fields", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
     }
 
     public void openLoginPage() {
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
+    }
+
+    public void Register() {
         Intent intent = new Intent(this,Login.class);
         startActivity(intent);
     }

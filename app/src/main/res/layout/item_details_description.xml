@@ -156,11 +156,25 @@
                     android:orientation="horizontal">
 
                     <Space
-                        android:layout_width="130dp"
+                        android:layout_width="50dp"
                         android:layout_height="10dp" />
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/continue_button"
+                        android:layout_width="144dp"
+                        android:layout_height="63dp"
+                        android:accessibilityLiveRegion="polite"
+                        android:backgroundTint="#000000"
+                        android:gravity="center"
+                        android:text="Continue"
+                        android:textSize="12sp" />
+
+                    <Space
+                        android:layout_width="30dp"
+                        android:layout_height="10dp" />
+
+                    <Button
+                        android:id="@+id/Delete_button"
                         android:layout_width="144dp"
                         android:layout_height="63dp"
                         android:accessibilityLiveRegion="polite"
