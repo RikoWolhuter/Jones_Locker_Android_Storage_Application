@@ -2,6 +2,7 @@ package com.example.opsc_1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -53,16 +54,16 @@ public class Login extends AppCompatActivity {
       Intent intent = new Intent(this,Login.class);
     startActivity(intent);
     }
-/*
+
     String encrypted = "ANY_ENCRYPTED_STRING_HERE";//Insert encrypted string here
     String decrypted = "";
-    try {
+    /*try {
         decrypted = Registration.decrypt(encrypted);
-        Log.d("TEST", "decrypted:" + decrypted);
+        Log.d("TEST", "decrypted: " + decrypted);
     } catch (Exception e) {
         e.printStackTrace();
-    }
-*/
+    }*/
+
 
 }
 

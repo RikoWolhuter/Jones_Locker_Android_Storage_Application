@@ -1,5 +1,6 @@
 package com.example.opsc_1;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,6 +64,7 @@ public class ItemDetailsDescription extends AppCompatActivity implements View.On
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
+       // Bitmap bitmap = (Bitmap) intent.getParcelableExtra("BitmapImage");
     }
 
     @Override

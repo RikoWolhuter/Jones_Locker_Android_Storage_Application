@@ -65,7 +65,7 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
             setContentView(R.layout.add_photo);
 
             toolbar = findViewById(R.id.nav_toolbar);
-            setSupportActionBar(toolbar);
+            //setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
 

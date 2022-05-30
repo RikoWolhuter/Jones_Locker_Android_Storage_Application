@@ -64,7 +64,7 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         String name;
 
         toolbar = findViewById(R.id.nav_toolbar);
-        setSupportActionBar(toolbar);
+       // setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 

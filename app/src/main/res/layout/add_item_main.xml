@@ -79,7 +79,8 @@
                         android:id="@+id/profileImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:srcCompat="@drawable/photo_placeholder" />
+                        app:srcCompat="@drawable/photo_placeholder"
+                        android:clickable="true"/>
                 </androidx.cardview.widget.CardView>
 
                 <Space
