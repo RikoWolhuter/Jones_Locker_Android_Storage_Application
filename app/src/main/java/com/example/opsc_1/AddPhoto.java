@@ -119,6 +119,7 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
                 imgCameraImage.setImageBitmap(bitmap);
             }
         }
+
         private void takePhoto(){
             Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(i,REQUEST_IMAGE_CAPTURE);

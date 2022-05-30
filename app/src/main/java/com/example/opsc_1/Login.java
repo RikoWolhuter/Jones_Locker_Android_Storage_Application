@@ -37,6 +37,8 @@ public class Login extends AppCompatActivity {
                 openRegPage();
             }
         });
+
+
     }
 
     public void openMainPage() {
@@ -51,7 +53,7 @@ public class Login extends AppCompatActivity {
       Intent intent = new Intent(this,Login.class);
     startActivity(intent);
     }
-
+/*
     String encrypted = "ANY_ENCRYPTED_STRING_HERE";//Insert encrypted string here
     String decrypted = "";
     try {
@@ -60,7 +62,7 @@ public class Login extends AppCompatActivity {
     } catch (Exception e) {
         e.printStackTrace();
     }
-
+*/
 
 }
 

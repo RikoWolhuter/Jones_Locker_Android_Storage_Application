@@ -110,7 +110,7 @@ public class Registration extends AppCompatActivity {
     private static void appendHex(StringBuffer sb, byte b) {
         sb.append(HEX.charAt((b >> 4) & 0x0f)).append(HEX.charAt(b & 0x0f));
     }
-
+/*
     String encrypted = "";
     String sourceStr = "This is any source string";//Insert password string into here
         try {
@@ -119,6 +119,6 @@ public class Registration extends AppCompatActivity {
     } catch {
 
     }
-
+*/
 
 }
