@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 public class Login extends AppCompatActivity {
 
@@ -17,6 +18,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
         Button log;
         Button reg;
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
 
         log = (Button) findViewById(R.id.loginbtn);
