@@ -1,6 +1,7 @@
 package com.example.opsc_1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +25,10 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
 
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         Button log;
+        Button reg;
 
         log = (Button) findViewById(R.id.goBackToLogin);
 
@@ -35,9 +39,23 @@ public class Registration extends AppCompatActivity {
             }
         });
 
+        reg = (Button) findViewById(R.id.register);
+
+        reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Register();
+            }
+        });
+
     }
 
     public void openLoginPage() {
+        Intent intent = new Intent(this,Login.class);
+        startActivity(intent);
+    }
+
+    public void Register() {
         Intent intent = new Intent(this,Login.class);
         startActivity(intent);
     }

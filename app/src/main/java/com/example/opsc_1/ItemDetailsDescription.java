@@ -1,19 +1,22 @@
 package com.example.opsc_1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class ItemDetailsDescription extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class ItemDetailsDescription extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -50,6 +53,8 @@ public class ItemDetailsDescription extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details_description);
 
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         toolbar = findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -63,6 +68,21 @@ public class ItemDetailsDescription extends AppCompatActivity implements View.On
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
+
+        Button add = findViewById(R.id.continue_button);
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent = new Intent(ItemDetailsDescription.this,AddItem.class);
+
+                startActivity(intent);
+                finish();
+
+            }
+        });
     }
 
     @Override
@@ -75,9 +95,5 @@ public class ItemDetailsDescription extends AppCompatActivity implements View.On
             super.onBackPressed();
         }
     }
-    @Override
-    public  void onClick(View v)
-    {
 
-    }
 }

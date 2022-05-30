@@ -135,7 +135,7 @@
                 android:layout_height="10dp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/continue_sort_items"
                 android:layout_width="144dp"
                 android:layout_height="63dp"
                 android:gravity="center"

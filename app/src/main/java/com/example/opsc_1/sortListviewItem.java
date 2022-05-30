@@ -1,12 +1,15 @@
 package com.example.opsc_1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -50,6 +53,19 @@ public class sortListviewItem extends AppCompatActivity implements NavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sort_listview_items);
 
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        Button continue_;
+
+        continue_ = (Button) findViewById(R.id.continue_sort_items);
+
+        continue_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openItemMain();
+            }
+        });
+
         toolbar = findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -63,6 +79,11 @@ public class sortListviewItem extends AppCompatActivity implements NavigationVie
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public void openItemMain() {
+        Intent intent = new Intent(this,AddItem.class);
+        startActivity(intent);
     }
 
     @Override

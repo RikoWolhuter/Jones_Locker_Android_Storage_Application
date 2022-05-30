@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 public class IntentHelper {
 
     public static void openIntent(Context context,  Class passTo)
@@ -14,6 +16,8 @@ public class IntentHelper {
 
         //start the activity
         context.startActivity(i);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
 }
