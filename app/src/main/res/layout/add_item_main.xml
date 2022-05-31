@@ -24,7 +24,7 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/nav_toolbar"
-                    android:layout_width="371dp"
+                    android:layout_width="match_parent"
                     android:layout_height="61dp"
                     android:background="@color/white"
                     android:minHeight="?attr/actionBarSize"
@@ -33,26 +33,6 @@
                     app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
                     app:subtitleTextColor="#000000"
                     app:titleMargin="4dp" />
-
-                <SearchView
-                    android:id="@+id/searchView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="61dp"
-                    android:layout_alignParentRight="true"
-
-                    android:animateLayoutChanges="true"
-
-
-                    android:background="#FFFFFF"
-
-
-                    android:closeIcon="@drawable/ic_baseline_close_24"
-                    android:layoutDirection="ltr"
-                    android:searchHintIcon="@drawable/ic_baseline_search_24"
-                    android:searchIcon="@drawable/ic_baseline_search_24"
-                    android:textDirection="rtl"
-                    app:iconifiedByDefault="true"
-                    app:queryBackground="@android:color/transparent" />
 
             </LinearLayout>
 
