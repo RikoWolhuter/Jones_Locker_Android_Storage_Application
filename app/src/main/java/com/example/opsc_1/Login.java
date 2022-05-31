@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
                 String tempUsername = Username.getText().toString();
                 String tempPassword = Password.getText().toString();
 
-                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword) && (tempUsername).equals(getterAndsetter.getUsername()) && (tempPassword).equals(getterAndsetter.getPassword())) {
+                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword)) {//&& (tempUsername).equals(getterAndsetter.getUsername()) && (tempPassword).equals(getterAndsetter.getPassword())
                     openMainPage();
                 }
                 else{
