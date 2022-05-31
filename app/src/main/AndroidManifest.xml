@@ -12,6 +12,91 @@
         android:theme="@style/Theme.OPSC_1"
 
         >
+
+
+        <activity
+            android:name=".AddCollection"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".AddItem"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".AddItemDetails"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".AddPhoto"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".Collection"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".Goal"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".Graph"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".ItemDetailsDescription"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".Medal"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".Profile"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".sortListviewCollection"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".sortListviewItem"
+            android:exported="true"
+            >
+        </activity>
+
+        <activity
+            android:name=".Registration"
+            android:exported="true"
+            >
+        </activity>
         <activity
             android:name=".Login"
             android:exported="true"

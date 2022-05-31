@@ -15,12 +15,12 @@ public class Login extends AppCompatActivity {
     private GetterAndSetters getterAndsetter;
     private TextView Username;
     private TextView Password;
+    private Button log;
+    private Button reg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        Button log;
-        Button reg;
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getterAndsetter = new GetterAndSetters();
 
@@ -28,7 +28,7 @@ public class Login extends AppCompatActivity {
         Password =  findViewById(R.id.Password_input_Login);
 
 
-        log = (Button) findViewById(R.id.loginbtn);
+        log = findViewById(R.id.loginbtn);
 
         log.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,13 +48,14 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        reg =(Button) findViewById(R.id.regbtn);
+        reg = findViewById(R.id.reg);
 
         reg.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View view){
-                openRegPage();
+                Intent intent = new Intent(Login.this,Registration.class);
+                startActivity(intent);
             }
         });
 
@@ -69,10 +70,7 @@ public class Login extends AppCompatActivity {
 
 
 
-    public void openRegPage() {
-      Intent intent = new Intent(this,Registration.class);
-    startActivity(intent);
-    }
+
 /*
     String encrypted = "ANY_ENCRYPTED_STRING_HERE";//Insert encrypted string here
     String decrypted = "";
