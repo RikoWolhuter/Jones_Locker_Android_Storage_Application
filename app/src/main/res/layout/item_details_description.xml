@@ -141,6 +141,7 @@
                         android:backgroundTint="#000000"
                         android:gravity="center"
                         android:text="Continue"
+                        android:textColor="#FFFFFF"
                         android:textSize="12sp" />
 
                     <Space
@@ -155,6 +156,7 @@
                         android:backgroundTint="#9A0000"
                         android:gravity="center"
                         android:text="Delete item"
+                        android:textColor="#FFFFFF"
                         android:textSize="12sp" />
                 </LinearLayout>
                 <Space
