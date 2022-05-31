@@ -176,6 +176,7 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:onClick="itemDetails"
                     android:text="CONTINUE"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

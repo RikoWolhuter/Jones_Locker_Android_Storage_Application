@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,8 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
     private NavigationView navigationView;
     int SELECT_PICTURE = 200;
     ImageView collectionImage;
+    //created int variable to capture the goal J-L
+    int goal;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -142,8 +145,39 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
             //otherwise, let the super class handle it
             super.onBackPressed();
         }
+
+        /*
+           //Trying to capture the goal the user has set for the collection
+
+           addcollectionbtn = (Button) findViewById(R.id.addcollectionbtn);
+           addcollectionbtn = setOnClickListener(new View.OnClickListener())
+    {
+
+        public void OnClick (View view)
+        {
+            EditText goal = findViewById(R.id.ETGoal);
+            ETGoal = integer.valueOf(ETGoal.getText().toString())
+
+            //if statement that if the user reaches their goal it gives them a diamond icon (I am unsure of how to do this J-L)
+
+            if (ETGoal >= counter)
+            {
+            message.setText("Goal reached")
+            }
+            else if (ETGoal < counter)
+            {
+            message.setText("Goal is not reached not")
+            }
+            }
+
+
+        }
+*/
+
+        }
+
     }
 
 
 
-}
+

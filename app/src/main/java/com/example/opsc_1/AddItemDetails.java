@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,6 +26,8 @@ public class AddItemDetails extends AppCompatActivity implements View.OnClickLis
     private NavigationView navigationView;
     int SELECT_PICTURE = 200;
     ImageView ImageGallery;
+    //variable to capture the amount of times a user has created an item, counter starts at 0, J-L
+    int counter = 0;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -110,6 +113,24 @@ public class AddItemDetails extends AppCompatActivity implements View.OnClickLis
                     ImageGallery.setImageURI(selectedImageUri);
 
                 }
+/*
+//Each click of creating an item will increase the counter J-L
+
+public void additemcollectionbtn (View view)
+{
+counter++
+//I am unsure of how to show the users physically progression with diamond icon
+if (ETGoal >= counter)
+{
+message.setText("Goal reached")
+}
+else if (ETGoal < counter)
+{
+message.setText("Goal is not reached")
+}
+}
+
+                }*/
             }
         }
     }
