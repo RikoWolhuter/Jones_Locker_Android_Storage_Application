@@ -98,7 +98,7 @@ public class Registration extends AppCompatActivity {
     }
 
 
-
+/*
     private static final byte[] keyValue =
             new byte[]{'c', 'o', 'd', 'i', 'n', 'g', 'a', 'f', 'f', 'a', 'i', 'r', 's', 'c', 'o', 'm'};
 
@@ -165,7 +165,7 @@ public class Registration extends AppCompatActivity {
     private static void appendHex(StringBuffer sb, byte b) {
         sb.append(HEX.charAt((b >> 4) & 0x0f)).append(HEX.charAt(b & 0x0f));
     }
-/*
+
     String encrypted = "";
     String sourceStr = "This is any source string";//Insert password string into here
         try {
@@ -174,6 +174,6 @@ public class Registration extends AppCompatActivity {
     } catch {
 
     }
-*/
 
+*/
 }
