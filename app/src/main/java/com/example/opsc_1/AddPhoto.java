@@ -1,6 +1,7 @@
 package com.example.opsc_1;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -27,13 +28,16 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
 
         private FloatingActionButton fab;
         private ImageView imgCameraImage;
-        private static final int REQUEST_IMAGE_CAPTURE_PERMISSION = 100;
+       private static final int REQUEST_IMAGE_CAPTURE_PERMISSION = 100;
         private static final int REQUEST_IMAGE_CAPTURE = 0;
+
 
         private Toolbar toolbar;
         private DrawerLayout drawerLayout;
         private ActionBarDrawerToggle toggleOnOff;
         private NavigationView navigationView;
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -68,7 +72,7 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
             toolbar = findViewById(R.id.nav_toolbar);
-            //setSupportActionBar(toolbar);
+            setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -81,8 +85,11 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
             navigationView.bringToFront();
             navigationView.setNavigationItemSelectedListener(this);
 
+            //Camera
             fab= findViewById(R.id.floatingActionButton);
             imgCameraImage= findViewById(R.id.profileImage);
+
+
             fab.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -93,7 +100,8 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
                             != PackageManager.PERMISSION_GRANTED){
                         final String[] permissions ={Manifest.permission.CAMERA};
                         //Request permission- this is asynchronous
-                        ActivityCompat.requestPermissions(AddPhoto.this, permissions, REQUEST_IMAGE_CAPTURE_PERMISSION);
+                        ActivityCompat.requestPermissions(AddPhoto.this,
+                                permissions, REQUEST_IMAGE_CAPTURE_PERMISSION);
                     }else
                     {
                         //we have permission, so take the photo
@@ -108,25 +116,36 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
                                                @NonNull int[] grantResults){
             super.onRequestPermissionsResult(requestCode,permissions,grantResults);
             if(requestCode == REQUEST_IMAGE_CAPTURE_PERMISSION &&
-                    ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)==PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)==
+                            PackageManager.PERMISSION_GRANTED){
                 takePhoto();;
             }
         }
 
-        @Override protected void onActivityResult(int requestCode,int resultCode, @Nullable Intent data){
-            super.onActivityResult(requestCode , resultCode, data);
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode,@Nullable  Intent data){
+        super.onActivityResult(requestCode , resultCode, data);
             //check if we are receiving the result from the right request.
             //Also check whether the data null, meaning the user may have cancelled.
-            if(requestCode== REQUEST_IMAGE_CAPTURE && data !=null){
-                Bitmap bitmap =(Bitmap) data.getExtras().get("data");
-                imgCameraImage.setImageBitmap(bitmap);
-            }
+            //if(requestCode== REQUEST_IMAGE_CAPTURE && data !=null){
+              //  Bitmap bitmap =(Bitmap) data.getExtras().get("data");
+                //imgCameraImage.setImageBitmap(bitmap);
+                //testing
+                if(requestCode ==REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+                    Bundle extras = data.getExtras();
+                    Bitmap imageBitmap =(Bitmap) extras.get("data");
+                    imgCameraImage.setImageBitmap(imageBitmap);
+                }
+
+            //}
         }
 
         private void takePhoto(){
             Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(i,REQUEST_IMAGE_CAPTURE);
         }
+
+
 
     @Override
     public void onBackPressed(){
