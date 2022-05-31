@@ -8,11 +8,14 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -26,6 +29,10 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
+    int SELECT_PICTURE = 200;
+    ImageView collectionImage;
+    //created int variable to capture the goal J-L
+    int goal;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -69,12 +76,24 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
         drawerLayout.addDrawerListener(toggleOnOff);
         toggleOnOff.syncState();
 
+
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
 
         EditText name = findViewById(R.id.ETName);
         EditText goal = findViewById(R.id.ETGoal);
+
+
+        //ImageView clickable to change picture
+        collectionImage = findViewById(R.id.imageView6);
+        //change picture by calling ImageChooser(), when clicked
+        collectionImage.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                imageChooser();
+            }
+        });
         Button add = findViewById(R.id.addcollectionbtn);
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +112,29 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
         });
 
     }
+    //Allow User access to gallery
+    void imageChooser(){
+        //Creating instance of the intent of type image
+        Intent i = new Intent();
+        i.setType("image/");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i,"Select Picture"),SELECT_PICTURE);
+
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            //Compare resultCode with SELECT_Picture constant
+            if (requestCode == SELECT_PICTURE) {
+                //get Url of image from data
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    //update the preview image in the layout
+                    collectionImage.setImageURI(selectedImageUri);
+                }
+            }
+        }
+    }
 
     @Override
     public void onBackPressed(){
@@ -103,8 +145,39 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
             //otherwise, let the super class handle it
             super.onBackPressed();
         }
+
+        /*
+           //Trying to capture the goal the user has set for the collection
+
+           addcollectionbtn = (Button) findViewById(R.id.addcollectionbtn);
+           addcollectionbtn = setOnClickListener(new View.OnClickListener())
+    {
+
+        public void OnClick (View view)
+        {
+            EditText goal = findViewById(R.id.ETGoal);
+            ETGoal = integer.valueOf(ETGoal.getText().toString())
+
+            //if statement that if the user reaches their goal it gives them a diamond icon (I am unsure of how to do this J-L)
+
+            if (ETGoal >= counter)
+            {
+            message.setText("Goal reached")
+            }
+            else if (ETGoal < counter)
+            {
+            message.setText("Goal is not reached not")
+            }
+            }
+
+
+        }
+*/
+
+        }
+
     }
 
 
 
-}
+

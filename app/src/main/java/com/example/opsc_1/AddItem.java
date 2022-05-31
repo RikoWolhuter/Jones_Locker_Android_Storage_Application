@@ -1,11 +1,13 @@
 package com.example.opsc_1;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +33,8 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     private ListView lstvItems;
     private List<String> itemList;
     private ArrayAdapter<String> itemAdapter;
+    ImageView ProfileImage;
+    int SELECT_PICTURE = 200;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -83,6 +87,15 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
 
         itemList = new ArrayList<>();
         lstvItems = findViewById(R.id.lstv_items);
+        //Image widget
+        ProfileImage= findViewById(R.id.profileImage);
+        ProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageChooser();
+            }
+        });
+
 
         add = (ImageButton) findViewById(R.id.Addbtn_items);
         sort = (ImageButton) findViewById(R.id.Sortbtn_items);
@@ -130,6 +143,29 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     public void openSortListview_Item_Page() {
         Intent intent = new Intent(AddItem.this,sortListviewItem.class);//sort listview class for Items
         startActivity(intent);
+    }
+    //Allow User access to gallery
+    void imageChooser(){
+        //Creating instance of the intent of type image
+        Intent i = new Intent();
+        i.setType("image/");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i,"Select Picture"),SELECT_PICTURE);
+
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            //Compare resultCode with SELECT_Picture constant
+            if (requestCode == SELECT_PICTURE) {
+                //get Url of image from data
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    //update the preview image in the layout
+                    ProfileImage.setImageURI(selectedImageUri);
+                }
+            }
+        }
     }
 
     @Override

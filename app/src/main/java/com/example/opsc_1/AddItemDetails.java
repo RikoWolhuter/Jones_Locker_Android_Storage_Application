@@ -1,27 +1,33 @@
 package com.example.opsc_1;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class AddItemDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AddItemDetails extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
+    int SELECT_PICTURE = 200;
+    ImageView ImageGallery;
+    //variable to capture the amount of times a user has created an item, counter starts at 0, J-L
+    int counter = 0;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -52,8 +58,6 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item_details);
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
         toolbar = findViewById(R.id.nav_toolbar);
         //setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -68,24 +72,68 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
 
-        Button add = findViewById(R.id.addItemcollectionbtn);
-
-        add.setOnClickListener(new View.OnClickListener() {
+        ImageGallery =findViewById(R.id.imageView6);
+        //Choose Image button to trigger image chooser
+        ImageGallery.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-
-
-                Intent intent = new Intent(AddItemDetails.this,Collection.class);
-
-                startActivity(intent);
-                finish();
-
+            public void onClick(View v){
+                imageChooser();
             }
         });
+        //convert to bitmap to be passed to next page
+        ImageGallery.buildDrawingCache();
+        Bitmap bitmap = ImageGallery.getDrawingCache();
+        Intent intent = new Intent(this, ItemDetailsDescription.class);
+        intent.putExtra("BitmapImage", bitmap);
     }
+    @Override
+    public  void onClick(View v)
+    {
 
+    }
+    //Allow User access to gallery
+    void imageChooser(){
+        //Creating instance of the intent of type image
+        Intent i = new Intent();
+        i.setType("image/");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i,"Select Picture"),SELECT_PICTURE);
 
+    }
+    //Image choosing
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            //Compare resultCode with SELECT_Picture constant
+            if (requestCode == SELECT_PICTURE) {
+                //get Url of image from data
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    //update the preview image in the layout
+                    ImageGallery.setImageURI(selectedImageUri);
 
+                }
+/*
+//Each click of creating an item will increase the counter J-L
+
+public void additemcollectionbtn (View view)
+{
+counter++
+//I am unsure of how to show the users physically progression with diamond icon
+if (ETGoal >= counter)
+{
+message.setText("Goal reached")
+}
+else if (ETGoal < counter)
+{
+message.setText("Goal is not reached")
+}
+}
+
+                }*/
+            }
+        }
+    }
 
     @Override
     public void onBackPressed(){
