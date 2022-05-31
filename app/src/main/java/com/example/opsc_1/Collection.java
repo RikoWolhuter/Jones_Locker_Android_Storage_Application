@@ -67,7 +67,7 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         toolbar = findViewById(R.id.nav_toolbar);
-       // setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 

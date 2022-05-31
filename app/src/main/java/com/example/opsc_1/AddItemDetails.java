@@ -59,7 +59,7 @@ public class AddItemDetails extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.add_item_details);
 
         toolbar = findViewById(R.id.nav_toolbar);
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 

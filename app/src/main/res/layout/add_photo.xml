@@ -8,36 +8,32 @@
     tools:context=".AddPhoto">
 
 
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/menu">
+
+    </com.google.android.material.navigation.NavigationView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/nav_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:menu="@menu/menu">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/nav_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="61dp"
-                    android:background="@color/white"
-                    android:minHeight="?attr/actionBarSize"
-                    android:theme="?attr/actionBarTheme"
-                    app:navigationIcon="@drawable/diamond_small"
-                    app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
-                    app:subtitleTextColor="#000000"
-                    app:titleMargin="4dp" />
-
-            </LinearLayout>
-
-        </com.google.android.material.navigation.NavigationView>
+            android:layout_height="61dp"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/diamond_small"
+            app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:subtitleTextColor="#000000"
+            app:titleMargin="4dp" />
 
         <ScrollView
             android:layout_width="match_parent"
