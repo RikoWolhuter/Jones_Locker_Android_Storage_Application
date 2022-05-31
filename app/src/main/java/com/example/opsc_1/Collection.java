@@ -103,16 +103,15 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         //Here is some onclick listener code i found on the internet so that a user can view the collection item selected, just needs to be adapted to our app
         /*
         listView.setOnItemClickListener(new OnItemClickListener() {
-
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object o = prestListView.getItemAtPosition(position);
-                prestationEco str = (prestationEco)o; //As you are using Default String Adapter
-
-                Toast.makeText(getBaseContext(),str.getTitle(),Toast.LENGTH_SHORT).show();
-
-                openAddItemMainPage();
-            }
-        });*/
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view,
+        int position, long id) {
+        Toast.makeText(getApplicationContext(),
+            "Click ListItem Number " + position, Toast.LENGTH_LONG)
+            .show();
+    }
+});
+*/
     }
 /*
     public void openAddItemMainPage() {
