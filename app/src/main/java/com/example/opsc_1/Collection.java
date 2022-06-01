@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,7 +128,7 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         Intent intent = new Intent(Collection.this,sortListviewCollection.class);//sort listview class for collection
         startActivity(intent);
     }
-/*
+
     TextView displayName = findViewById(R.id.collectionName);
     Bundle bn = getIntent().getExtras();
     String name = bn.getString("sendname");
@@ -135,7 +136,7 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
     TextView displayGoal = findViewById(R.id.collectionGoal);
     String goal = bn.getString("sendgoal");
     //displayName.setText(String.valueOf(goal));
-*/
+
 
     @Override
     public void onBackPressed(){

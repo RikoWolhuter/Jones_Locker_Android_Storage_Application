@@ -1,0 +1,139 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.drawerlayout.widget.DrawerLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".MainActivity\" >\r\n\r\n    <com.google.android.material.navigation.NavigationView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\" >\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\">\r\n\r\n            <androidx.appcompat.widget.Toolbar\r\n                android:id=\"@+id/toolbar\"\r\n                android:layout_width=\"371dp\"\r\n                android:layout_height=\"61dp\"\r\n                android:background=\"@color/white\"\r\n                android:minHeight=\"?attr/actionBarSize\"\r\n                android:theme=\"?attr/actionBarTheme\"\r\n                app:navigationIcon=\"@drawable/_4dp\"\r\n                app:subtitleTextAppearance=\"@style/TextAppearance.AppCompat.Body2\"\r\n                app:subtitleTextColor=\"#FFFFFF\"\r\n                app:titleMargin=\"4dp\" />\r\n\r\n            <SearchView\r\n                android:id=\"@+id/searchView\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"61dp\"\r\n                android:layout_alignParentRight=\"true\"\r\n\r\n                android:animateLayoutChanges=\"true\"\r\n\r\n\r\n                android:background=\"#FFFFFF\"\r\n\r\n\r\n                android:closeIcon=\"@drawable/ic_baseline_close_24\"\r\n                android:layoutDirection=\"ltr\"\r\n                android:searchHintIcon=\"@drawable/ic_baseline_search_24\"\r\n                android:searchIcon=\"@drawable/ic_baseline_search_24\"\r\n                android:textDirection=\"rtl\"\r\n                app:iconifiedByDefault=\"true\"\r\n                app:queryBackground=\"@android:color/transparent\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:paddingTop=\"60dp\"\r\n            android:orientation=\"vertical\">\r\n\r\n            <ScrollView\r\n                android:id=\"@+id/scrollview\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_gravity=\"center\"\r\n                android:contentDescription=\"@string/app_name\">\r\n\r\n                <ImageView\r\n                    android:id=\"@+id/imageView1\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    app:srcCompat=\"@drawable/_e58023eda13d_1\" />\r\n\r\n                <ImageView\r\n                    android:id=\"@+id/imageView2\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    app:srcCompat=\"@drawable/best_4k_cameras_for_live_streaming__2__1\" />\r\n            </ScrollView>\r\n\r\n\r\n\r\n        </LinearLayout>\r\n\r\n    </com.google.android.material.navigation.NavigationView>\r\n\r\n</androidx.drawerlayout.widget.DrawerLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 8e890457f1f15986c9e0810161ba4c58c27c0715)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1652253346066)
+@@ -10,74 +10,80 @@
+         android:layout_width="match_parent"
+         android:layout_height="match_parent" >
+ 
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent">
++        <ScrollView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:fillViewport="false">
++            <LinearLayout
++                android:orientation="vertical" android:layout_width="match_parent"
++                android:layout_height="match_parent">
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="match_parent">
+ 
+-            <androidx.appcompat.widget.Toolbar
+-                android:id="@+id/toolbar"
+-                android:layout_width="371dp"
+-                android:layout_height="61dp"
+-                android:background="@color/white"
+-                android:minHeight="?attr/actionBarSize"
+-                android:theme="?attr/actionBarTheme"
+-                app:navigationIcon="@drawable/_4dp"
+-                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
+-                app:subtitleTextColor="#FFFFFF"
+-                app:titleMargin="4dp" />
++                    <androidx.appcompat.widget.Toolbar
++                        android:id="@+id/toolbar"
++                        android:layout_width="371dp"
++                        android:layout_height="61dp"
++                        android:background="@color/white"
++                        android:minHeight="?attr/actionBarSize"
++                        android:theme="?attr/actionBarTheme"
++                        app:navigationIcon="@drawable/_4dp"
++                        app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
++                        app:subtitleTextColor="#FFFFFF"
++                        app:titleMargin="4dp" />
+ 
+-            <SearchView
+-                android:id="@+id/searchView"
+-                android:layout_width="wrap_content"
+-                android:layout_height="61dp"
+-                android:layout_alignParentRight="true"
++                    <SearchView
++                        android:id="@+id/searchView"
++                        android:layout_width="wrap_content"
++                        android:layout_height="61dp"
++                        android:layout_alignParentRight="true"
+ 
+-                android:animateLayoutChanges="true"
++                        android:animateLayoutChanges="true"
+ 
+ 
+-                android:background="#FFFFFF"
++                        android:background="#FFFFFF"
+ 
+ 
+-                android:closeIcon="@drawable/ic_baseline_close_24"
+-                android:layoutDirection="ltr"
+-                android:searchHintIcon="@drawable/ic_baseline_search_24"
+-                android:searchIcon="@drawable/ic_baseline_search_24"
+-                android:textDirection="rtl"
+-                app:iconifiedByDefault="true"
+-                app:queryBackground="@android:color/transparent" />
++                        android:closeIcon="@drawable/ic_baseline_close_24"
++                        android:layoutDirection="ltr"
++                        android:searchHintIcon="@drawable/ic_baseline_search_24"
++                        android:searchIcon="@drawable/ic_baseline_search_24"
++                        android:textDirection="rtl"
++                        app:iconifiedByDefault="true"
++                        app:queryBackground="@android:color/transparent" />
+ 
+-        </LinearLayout>
++                </LinearLayout>
+ 
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"
+-            android:paddingTop="60dp"
+-            android:orientation="vertical">
+-
+-            <ScrollView
+-                android:id="@+id/scrollview"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:layout_gravity="center"
+-                android:contentDescription="@string/app_name">
+-
+                 <ImageView
+-                    android:id="@+id/imageView1"
++                    android:id="@+id/imageView4"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
++
+                     app:srcCompat="@drawable/_e58023eda13d_1" />
+ 
+                 <ImageView
+-                    android:id="@+id/imageView2"
++                    android:id="@+id/imageView6"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     app:srcCompat="@drawable/best_4k_cameras_for_live_streaming__2__1" />
+-            </ScrollView>
+ 
++                <ImageView
++                    android:id="@+id/imageView7"
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    app:srcCompat="@drawable/images_1" />
++
++                <ImageView
++                    android:id="@+id/imageView8"
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    app:srcCompat="@drawable/career_progression_scaled_1_1" />
+ 
+ 
+-        </LinearLayout>
+-
++            </LinearLayout>
++        </ScrollView>
+     </com.google.android.material.navigation.NavigationView>
+ 
+ </androidx.drawerlayout.widget.DrawerLayout>
+\ No newline at end of file
