@@ -22,7 +22,8 @@ import java.util.List;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class Collection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class
+Collection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
