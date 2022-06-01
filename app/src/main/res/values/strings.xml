@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Jone’s Locker</string>
+    <string name="app_name" translatable="false">Jone’s Locker</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="login">Login</string>
 </resources>

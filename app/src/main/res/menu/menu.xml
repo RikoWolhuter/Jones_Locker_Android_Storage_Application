@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<item
-    android:id="@+id/action_search"
-    android:title = "Search"
-    android:icon="@android:drawable/ic_menu_search"
-    app:actionViewClass="androidx.appcompat.widget.SearchView"
-    app:showAsAction="ifRoom|collapseActionView"
-
-/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_collection"
+            android:title="Collections" />
+        <item
+            android:id="@+id/nav_photo"
+            android:title="Take a photo" />
+        <item
+            android:id="@+id/nav_graph"
+            android:title="Graph" />
+        <item
+            android:id="@+id/nav_progression"
+            android:title="Collection progression" />
+        <item
+            android:id="@+id/nav_profile"
+            android:title="My profile" />
+    </group>
 
 </menu>
