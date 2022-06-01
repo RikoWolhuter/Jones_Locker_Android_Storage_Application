@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity {
                 else{
                     Toast.makeText(Login.this, "Please complete all the fields and make sure login details are correct", Toast.LENGTH_SHORT).show();
                 }
-
+//
 
             }
         });
