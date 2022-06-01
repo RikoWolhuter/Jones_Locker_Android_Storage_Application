@@ -186,6 +186,7 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String CollectionItem = acAdp.getItem(position);
                 Toast.makeText(Collection.this, ""+CollectionItem, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Collection.this,AddItemDetails.class);//sort listview class for collection
 
             }
         });
