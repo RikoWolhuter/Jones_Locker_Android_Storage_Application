@@ -30,11 +30,13 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
 
-    private ListView lstvCollections;
+    ListView lstvCollections;
     private List<String> collectionsList;
     private ArrayAdapter<String> collectionAdapter;
-    private ArrayList<EditText> ac;
+
     private ArrayAdapter<String>acAdp;
+    private String name;
+    private String goal;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -67,7 +69,9 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
         setContentView(R.layout.collection_main);
         ImageButton add;
         ImageButton sort;
-        String name;
+
+        ArrayAdapter();
+
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
@@ -85,8 +89,7 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
 
-        collectionsList = new ArrayList<>();
-        lstvCollections = findViewById(R.id.lstv_collections);
+
 
         add = (ImageButton) findViewById(R.id.Addbtn);
         sort = (ImageButton) findViewById(R.id.Sortbtn);
@@ -117,6 +120,11 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
     }
 });
 */
+
+
+
+
+
     }
 /*
     public void openAddItemMainPage() {
@@ -132,22 +140,45 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
         Intent intent = new Intent(Collection.this,sortListviewCollection.class);//sort listview class for collection
         startActivity(intent);
     }
+
+    public void ArrayAdapter(){
+
+
+        // TextView displayName = findViewById(R.id.ETName);
+
+
+        String name = getIntent().getStringExtra("sendname");
+        String goal = getIntent().getStringExtra("sendgoal");
+        //displayName.setText(String.valueOf(name));
+        //TextView displayGoal = findViewById(R.id.ETGoal);
+        String ListView_Item = name +"         goal: "+ goal;
+
+        //displayName.setText(String.valueOf(goal));
+        lstvCollections = (ListView) findViewById(R.id.lstv_collections_1);
+
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        arrayList.add(ListView_Item);
+
+
+
+        ArrayAdapter acAdp = new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
+
+        lstvCollections.setAdapter(acAdp);
+
+    }
+
+
+
+
 /*
-    TextView displayName = findViewById(R.id.collectionName);
-    Bundle bn = getIntent().getExtras();
-    String name = bn.getString("sendname");
-    //displayName.setText(String.valueOf(name));
-    TextView displayGoal = findViewById(R.id.collectionGoal);
-    String goal = bn.getString("sendgoal");
-    //displayName.setText(String.valueOf(goal));
-*/
     public void AddingCollections(){
-        ac = new ArrayList<>();
+       // ac = new ArrayList<>();
         EditText N = findViewById(R.id.ETName);
         EditText G = findViewById(R.id.ETGoal);
         ac.add(N);
         ac.add(G);
-        ArrayAdapter acAdp = new ArrayAdapter<String>(this,R.layout.add_collection,N.getId());
+ //       ArrayAdapter acAdp = new ArrayAdapter<String>(this,R.layout.add_collection,N.getId());
         ListView coll = (ListView) findViewById(R.id.lstv_collections);
         coll.setAdapter(acAdp);
 
@@ -155,7 +186,7 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
 
 
     }
-
+*/
 
     @Override
     public void onBackPressed(){

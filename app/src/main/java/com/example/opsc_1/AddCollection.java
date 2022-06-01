@@ -32,7 +32,8 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
     int SELECT_PICTURE = 200;
     ImageView collectionImage;
     //created int variable to capture the goal J-L
-    int goal;
+    EditText name;
+    EditText goal;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -81,8 +82,8 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
 
-        EditText name = findViewById(R.id.ETName);
-        EditText goal = findViewById(R.id.ETGoal);
+        name = findViewById(R.id.ETName);
+        goal = findViewById(R.id.ETGoal);
 
 
         //ImageView clickable to change picture
@@ -99,14 +100,15 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(AddCollection.this,Collection.class);
+
                 String tempName = name.getText().toString();
                 String tempGoal = goal.getText().toString();
 
-                Intent intent = new Intent(AddCollection.this,Collection.class);
                 intent.putExtra("sendname",tempName);
                 intent.putExtra("sendgoal",tempGoal);
                 startActivity(intent);
-                finish();
+
 
             }
         });
