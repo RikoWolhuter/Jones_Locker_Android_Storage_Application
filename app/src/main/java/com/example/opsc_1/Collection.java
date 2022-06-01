@@ -11,11 +11,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -172,9 +174,23 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
 
 
 
-        ArrayAdapter acAdp = new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
+
+
+        ArrayAdapter<String> acAdp = new ArrayAdapter(this,R.layout.custom_list,
+                R.id.text,arrayList);
 
         lstvCollections.setAdapter(acAdp);
+
+        lstvCollections.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String CollectionItem = acAdp.getItem(position);
+                Toast.makeText(Collection.this, ""+CollectionItem, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
     }
 
