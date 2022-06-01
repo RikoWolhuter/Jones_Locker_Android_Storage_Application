@@ -158,8 +158,5 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
         }
     }
 
-
-
-
     }
 

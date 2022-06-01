@@ -64,8 +64,9 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_collection);
 
+        //Remove night mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
+        //add navigation
         toolbar = findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -76,12 +77,14 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
         drawerLayout.addDrawerListener(toggleOnOff);
         toggleOnOff.syncState();
 
-
+        //navigation settings
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
 
+        //Collection Name added by user
         EditText name = findViewById(R.id.ETName);
+        //Goal of the Collection added by user
         EditText goal = findViewById(R.id.ETGoal);
 
 
@@ -94,15 +97,18 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
                 imageChooser();
             }
         });
+        //Add button to add new Collection to list
         Button add = findViewById(R.id.addcollectionbtn);
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Store Name of Collection in tempName
                 String tempName = name.getText().toString();
+                //Store Goal of Collection in tempGoal
                 String tempGoal = goal.getText().toString();
 
                 Intent intent = new Intent(AddCollection.this,Collection.class);
+                //Send name & goal to Collection Class
                 intent.putExtra("sendname",tempName);
                 intent.putExtra("sendgoal",tempGoal);
                 startActivity(intent);
