@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +32,8 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
     private ListView lstvCollections;
     private List<String> collectionsList;
     private ArrayAdapter<String> collectionAdapter;
+    private ArrayList<EditText> ac;
+    private ArrayAdapter<String>acAdp;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -128,7 +131,7 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         Intent intent = new Intent(Collection.this,sortListviewCollection.class);//sort listview class for collection
         startActivity(intent);
     }
-
+/*
     TextView displayName = findViewById(R.id.collectionName);
     Bundle bn = getIntent().getExtras();
     String name = bn.getString("sendname");
@@ -136,6 +139,21 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
     TextView displayGoal = findViewById(R.id.collectionGoal);
     String goal = bn.getString("sendgoal");
     //displayName.setText(String.valueOf(goal));
+*/
+    public void AddingCollections(){
+        ac = new ArrayList<>();
+        EditText N = findViewById(R.id.ETName);
+        EditText G = findViewById(R.id.ETGoal);
+        ac.add(N);
+        ac.add(G);
+        ArrayAdapter acAdp = new ArrayAdapter<String>(this,R.layout.add_collection,N.getId());
+        ListView coll = (ListView) findViewById(R.id.lstv_collections);
+        coll.setAdapter(acAdp);
+
+
+
+
+    }
 
 
     @Override
