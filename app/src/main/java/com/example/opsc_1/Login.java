@@ -33,6 +33,17 @@ public class Login extends AppCompatActivity {
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+/*
+String tempUsername = Username.getText().toString();
+                String tempPassword = Password.getText().toString();
+
+                String name = getIntent().getStringExtra("sendUsername");
+                String goal = getIntent().getStringExtra("sendPassword");
+
+                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword) && (tempUsername).equals(name) && (tempPassword).equals(goal)){
+                    openMainPage();
+ */
+
 
                 String tempUsername = Username.getText().toString();
                 String tempPassword = Password.getText().toString();

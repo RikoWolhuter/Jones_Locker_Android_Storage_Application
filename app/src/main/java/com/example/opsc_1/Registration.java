@@ -72,9 +72,15 @@ public class Registration extends AppCompatActivity {
                         !TextUtils.isEmpty(tempgmail) && tempPassword.equals(tempconfirmPassword)) {
 
                     /*
-                    getterAndsetter.setUsername(tempUsername);
-                    getterAndsetter.setPassword(tempPassword);
-                    getterAndsetter.setGmail(tempgmail);
+
+                    Intent intent = new Intent(Registration.this,Login.class);
+
+                    tempUsername = Username.getText().toString();
+                    tempPassword = Password.getText().toString();
+                    intent.putExtra("sendUsername",tempUsername);
+                    intent.putExtra("sendPassword",tempPassword);
+
+                    startActivity(intent);
                      */
 
                     Intent intent = new Intent(Registration.this,Login.class);

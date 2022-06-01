@@ -116,6 +116,26 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
 
             }
         });
+        /*
+         Button add = findViewById(R.id.addcollectionbtn);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Store Name of Collection in tempName
+                String tempName = name.getText().toString();
+                //Store Goal of Collection in tempGoal
+                String tempGoal = goal.getText().toString();
+
+                Intent intent = new Intent(AddCollection.this,Collection.class);
+                //Send name & goal to Collection Class
+                intent.putExtra("sendname",tempName);
+                intent.putExtra("sendgoal",tempGoal);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+         */
 
     }
     //Allow User access to gallery

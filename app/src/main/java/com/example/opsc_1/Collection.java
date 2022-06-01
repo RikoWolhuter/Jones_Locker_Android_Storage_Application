@@ -37,6 +37,15 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
     private ArrayAdapter<String>acAdp;
     private String name;
     private String goal;
+    /*
+    ListView lstvCollections;
+    private List<String> collectionsList;
+    private ArrayAdapter<String> collectionAdapter;
+
+    private ArrayAdapter<String>acAdp;
+    private String name;
+    private String goal;
+     */
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -71,6 +80,7 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
         ImageButton sort;
 
         ArrayAdapter();
+        //ArrayAdapter();
 
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -167,6 +177,35 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
         lstvCollections.setAdapter(acAdp);
 
     }
+
+    /*
+        public void ArrayAdapter(){
+
+
+        // TextView displayName = findViewById(R.id.ETName);
+
+
+        String name = getIntent().getStringExtra("sendname");
+        String goal = getIntent().getStringExtra("sendgoal");
+        //displayName.setText(String.valueOf(name));
+        //TextView displayGoal = findViewById(R.id.ETGoal);
+        String ListView_Item = name +"         goal: "+ goal;
+
+        //displayName.setText(String.valueOf(goal));
+        lstvCollections = (ListView) findViewById(R.id.lstv_collections_1);
+
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        arrayList.add(ListView_Item);
+
+
+
+        ArrayAdapter acAdp = new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
+
+        lstvCollections.setAdapter(acAdp);
+
+    }
+     */
 
 
 
