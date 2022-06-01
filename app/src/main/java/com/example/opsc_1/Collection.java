@@ -163,7 +163,7 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
         String goal = getIntent().getStringExtra("sendgoal");
         //displayName.setText(String.valueOf(name));
         //TextView displayGoal = findViewById(R.id.ETGoal);
-        String ListView_Item = name +"         goal: "+ goal;
+        String ListView_Item = name +"               "+ goal;
 
         //displayName.setText(String.valueOf(goal));
         lstvCollections = (ListView) findViewById(R.id.lstv_collections_1);
@@ -171,6 +171,7 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
         ArrayList<String> arrayList = new ArrayList<>();
 
         arrayList.add(ListView_Item);
+        arrayList.add("March");
 
 
 
@@ -185,9 +186,9 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String CollectionItem = acAdp.getItem(position);
-                Toast.makeText(Collection.this, ""+CollectionItem, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Collection.this,AddItemDetails.class);//sort listview class for collection
 
+                Intent intent = new Intent(Collection.this,AddItemDetails.class);//sort listview class for collection
+                startActivity(intent);
             }
         });
 
