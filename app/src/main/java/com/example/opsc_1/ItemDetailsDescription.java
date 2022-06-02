@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -52,6 +54,16 @@ public class ItemDetailsDescription extends AppCompatActivity implements Navigat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details_description);
+
+        String name = getIntent().getStringExtra("sendnameItem_Details");
+        String Description = getIntent().getStringExtra("sendDescription_Details");
+
+        TextView name_txt = findViewById(R.id.Name_Description);
+        //Goal of the Collection added by user
+        TextView Description_txt = findViewById(R.id.Description_Description);
+
+        name_txt.setText(name);
+        Description_txt.setText(Description);
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 

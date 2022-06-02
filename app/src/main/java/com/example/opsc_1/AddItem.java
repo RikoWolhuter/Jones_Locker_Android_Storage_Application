@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -30,11 +32,15 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
 
+    ListView lstvCollections2;
     private ListView lstvItems;
     private List<String> itemList;
     private ArrayAdapter<String> itemAdapter;
     ImageView ProfileImage;
     int SELECT_PICTURE = 200;
+    private String name;
+    private String description;
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -65,7 +71,17 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item_main);
+        //ArrayAdapter_1();
+/*
+        TextView NameOfColl = findViewById(R.id.CollName);
+        TextView NameofGoa = findViewById(R.id.GoalCollection);
 
+        String TempnameItem = getIntent().getStringExtra("sendnameItem");
+        String TempgoalItem = getIntent().getStringExtra("sendgoalItem");
+
+        NameOfColl.setText(TempnameItem);
+        NameofGoa.setText(TempgoalItem);
+*/
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         ImageButton add;
@@ -128,6 +144,58 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
             }
         });*/
     }
+
+    public void ArrayAdapter_1(){
+
+        //buttonForClickEvent = (Button)findViewById(R.id.addcollectionbtn);
+        // TextView displayName = findViewById(R.id.ETName);
+
+
+
+        //Boolean click_OnContinue = getIntent().getBooleanExtra("clicked",true);
+        name = getIntent().getStringExtra("sendnameOfItem");
+        description = getIntent().getStringExtra("sendDescription");
+        //displayName.setText(String.valueOf(name));
+        //TextView displayGoal = findViewById(R.id.ETGoal);
+        String ListView_Item = name;
+
+        //displayName.setText(String.valueOf(goal));
+        lstvCollections2 = (ListView) findViewById(R.id.lstv_items);
+
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        //while(click_OnContinue = true) {
+        arrayList.add(ListView_Item);
+        //click_OnContinue = false;
+        //}
+
+
+
+
+
+
+
+        ArrayAdapter<String> acAdp1 = new ArrayAdapter(this,R.layout.custom_list_1,
+                R.id.text_item,arrayList);
+
+        lstvCollections2.setAdapter(acAdp1);
+
+        lstvCollections2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String CollectionItem = acAdp1.getItem(position);
+
+                Intent intent = new Intent(AddItem.this,ItemDetailsDescription.class);//sort listview class for collection
+                intent.putExtra("sendnameItem_Details",name);
+                intent.putExtra("sendDescription_Details",description);
+                startActivity(intent);
+            }
+        });
+
+
+
+    }
+
     /*
     public void openItemDetailsDescriptionPage() {
         Intent intent = new Intent(AddItem.this,ItemDetailsDescription.class);

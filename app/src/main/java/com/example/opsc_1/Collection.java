@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -39,6 +40,9 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
     private ArrayAdapter<String>acAdp;
     private String name;
     private String goal;
+
+
+    Button buttonForClickEvent;
     /*
     ListView lstvCollections;
     private List<String> collectionsList;
@@ -155,12 +159,14 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
 
     public void ArrayAdapter(){
 
-
+        //buttonForClickEvent = (Button)findViewById(R.id.addcollectionbtn);
         // TextView displayName = findViewById(R.id.ETName);
 
 
-        String name = getIntent().getStringExtra("sendname");
-        String goal = getIntent().getStringExtra("sendgoal");
+
+        //Boolean click_OnContinue = getIntent().getBooleanExtra("clicked",true);
+        name = getIntent().getStringExtra("sendname");
+        goal = getIntent().getStringExtra("sendgoal");
         //displayName.setText(String.valueOf(name));
         //TextView displayGoal = findViewById(R.id.ETGoal);
         String ListView_Item = name +"               "+ goal;
@@ -170,8 +176,12 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
 
         ArrayList<String> arrayList = new ArrayList<>();
 
+        //while(click_OnContinue = true) {
         arrayList.add(ListView_Item);
-        arrayList.add("March");
+        //click_OnContinue = false;
+        //}
+
+
 
 
 
@@ -187,7 +197,9 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String CollectionItem = acAdp.getItem(position);
 
-                Intent intent = new Intent(Collection.this,AddItemDetails.class);//sort listview class for collection
+                Intent intent = new Intent(Collection.this,AddItem.class);//sort listview class for collection
+                intent.putExtra("sendnameItem",name);
+                intent.putExtra("sendgoalItem",goal);
                 startActivity(intent);
             }
         });

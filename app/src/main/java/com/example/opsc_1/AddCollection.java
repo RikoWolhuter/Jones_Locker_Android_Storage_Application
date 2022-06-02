@@ -106,11 +106,13 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
                 String tempName = name.getText().toString();
                 //Store Goal of Collection in tempGoal
                 String tempGoal = goal.getText().toString();
+                Boolean  bool = true;
 
                 Intent intent = new Intent(AddCollection.this,Collection.class);
                 //Send name & goal to Collection Class
                 intent.putExtra("sendname",tempName);
                 intent.putExtra("sendgoal",tempGoal);
+                intent.putExtra("clicked",bool);
                 startActivity(intent);
                 finish();
 

@@ -63,7 +63,7 @@
                     android:layout_height="20dp" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/Name_Description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lost Surfboard"
@@ -114,7 +114,7 @@
                     android:layout_height="10dp" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/Description_Description"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:text="This was a surfboard that I bought from my friend in Hawaii. It is a short board. Great for big waves."
@@ -141,6 +141,7 @@
                         android:backgroundTint="#000000"
                         android:gravity="center"
                         android:text="Continue"
+                        android:textColor="#FFFFFF"
                         android:textSize="12sp" />
 
                     <Space
@@ -155,6 +156,7 @@
                         android:backgroundTint="#9A0000"
                         android:gravity="center"
                         android:text="Delete item"
+                        android:textColor="#FFFFFF"
                         android:textSize="12sp" />
                 </LinearLayout>
                 <Space

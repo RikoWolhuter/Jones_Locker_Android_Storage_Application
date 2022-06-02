@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class AddItemDetails extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class AddItemDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -26,6 +28,7 @@ public class AddItemDetails extends AppCompatActivity implements View.OnClickLis
     private NavigationView navigationView;
     int SELECT_PICTURE = 200;
     ImageView ImageGallery;
+
     //variable to capture the amount of times a user has created an item, counter starts at 0, J-L
     int counter = 0;
 
@@ -85,12 +88,32 @@ public class AddItemDetails extends AppCompatActivity implements View.OnClickLis
         Bitmap bitmap = ImageGallery.getDrawingCache();
         Intent intent = new Intent(this, ItemDetailsDescription.class);
         intent.putExtra("BitmapImage", bitmap);
-    }
-    @Override
-    public  void onClick(View v)
-    {
 
+        Button continueToItems =findViewById(R.id.addItemcollectionbtn);
+        //Choose Image button to trigger image chooser
+        continueToItems.setOnClickListener(new View.OnClickListener(){
+                                               @Override
+                                               public  void onClick(View v) {
+                                                   EditText name = findViewById(R.id.NameOfItem);
+                                                   //Goal of the Collection added by user
+                                                   EditText Description = findViewById(R.id.Description);
+
+
+                                                   String tempName = name.getText().toString();
+                                                   //Store Goal of Collection in tempGoal
+                                                   String tempDescription = Description.getText().toString();
+
+                                                   Intent intent = new Intent(AddItemDetails.this, AddItem.class);
+
+                                                   intent.putExtra("sendnameOfItem",tempName);
+                                                   intent.putExtra("sendDescription",tempDescription);
+
+                                                   startActivity(intent);
+                                                   finish();
+                                               }
+                                               });
     }
+
     //Allow User access to gallery
     void imageChooser(){
         //Creating instance of the intent of type image
