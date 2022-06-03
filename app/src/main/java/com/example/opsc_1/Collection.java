@@ -186,7 +186,6 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
 
 
 
-
         ArrayAdapter<String> acAdp = new ArrayAdapter(this,R.layout.custom_list,
                 R.id.text,arrayList);
 

@@ -94,14 +94,14 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
         continueToItems.setOnClickListener(new View.OnClickListener(){
                                                @Override
                                                public  void onClick(View v) {
-                                                   EditText name = findViewById(R.id.NameOfItem);
+                                                   EditText name1 = findViewById(R.id.NameOfItem);
                                                    //Goal of the Collection added by user
-                                                   EditText Description = findViewById(R.id.Description);
+                                                   EditText Description1 = findViewById(R.id.Description);
 
 
-                                                   String tempName = name.getText().toString();
+                                                   String tempName = name1.getText().toString();
                                                    //Store Goal of Collection in tempGoal
-                                                   String tempDescription = Description.getText().toString();
+                                                   String tempDescription = Description1.getText().toString();
 
                                                    Intent intent = new Intent(AddItemDetails.this, AddItem.class);
 
