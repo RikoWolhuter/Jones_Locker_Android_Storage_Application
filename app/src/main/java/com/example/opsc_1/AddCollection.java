@@ -159,6 +159,7 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
         // intent of the type image
         Intent i = new Intent();
         i.setType("image/*");
+
         i.setAction(Intent.ACTION_GET_CONTENT);
 
         // pass the constant to compare it
