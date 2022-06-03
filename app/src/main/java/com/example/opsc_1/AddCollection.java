@@ -1,4 +1,6 @@
 package com.example.opsc_1;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,10 +9,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +26,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.awt.font.TextAttribute;
+import java.io.IOException;
 
 
 public class AddCollection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -154,19 +159,42 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
 
     }
     //Allow User access to gallery
-    void imageChooser(){
-        // create an instance of the
-        // intent of the type image
+    private void imageChooser()
+    {
         Intent i = new Intent();
         i.setType("image/*");
-
         i.setAction(Intent.ACTION_GET_CONTENT);
 
-        // pass the constant to compare it
-        // with the returned requestCode
-        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
-
+        launchSomeActivity.launch(i);
     }
+
+    ActivityResultLauncher<Intent> launchSomeActivity
+            = registerForActivityResult(
+            new ActivityResultContracts
+                    .StartActivityForResult(),
+            result -> {
+                if (result.getResultCode()
+                        == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+                    // do your operation from here....
+                    if (data != null
+                            && data.getData() != null) {
+                        Uri selectedImageUri = data.getData();
+                        Bitmap selectedImageBitmap = null;
+                        try {
+                            selectedImageBitmap
+                                    = MediaStore.Images.Media.getBitmap(
+                                    this.getContentResolver(),
+                                    selectedImageUri);
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        collectionImage.setImageBitmap(
+                                selectedImageBitmap);
+                    }
+                }
+            });
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {

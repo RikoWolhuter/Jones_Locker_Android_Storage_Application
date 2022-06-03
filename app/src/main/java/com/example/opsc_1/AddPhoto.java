@@ -107,6 +107,7 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
                     {
                         //we have permission, so take the photo
                         takePhoto();
+
                     }
                 }
             });
