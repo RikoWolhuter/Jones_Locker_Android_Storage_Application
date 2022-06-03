@@ -29,7 +29,7 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
         private FloatingActionButton fab;
         private ImageView imgCameraImage;
        private static final int REQUEST_IMAGE_CAPTURE_PERMISSION = 100;
-        private static final int REQUEST_IMAGE_CAPTURE = 0;
+        private static final int REQUEST_IMAGE_CAPTURE = 1;
 
 
         private Toolbar toolbar;
@@ -38,7 +38,7 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
         private NavigationView navigationView;
 
 
-
+//Navigation
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
@@ -68,7 +68,7 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.add_photo);
-
+            //night mode off
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
             toolbar = findViewById(R.id.nav_toolbar);
@@ -85,8 +85,9 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
             navigationView.bringToFront();
             navigationView.setNavigationItemSelectedListener(this);
 
-            //Camera
+            //Camera floating Action Button to take image
             fab= findViewById(R.id.floatingActionButton);
+            //Img will be replaced with Image User takes
             imgCameraImage= findViewById(R.id.profileImage);
 
 
@@ -106,10 +107,12 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
                     {
                         //we have permission, so take the photo
                         takePhoto();
+
                     }
                 }
             });
         }
+        //Camera Permissions
         @Override
         public void onRequestPermissionsResult(int requestCode,
                                                @NonNull String[] permissions,
@@ -118,7 +121,7 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
             if(requestCode == REQUEST_IMAGE_CAPTURE_PERMISSION &&
                     ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)==
                             PackageManager.PERMISSION_GRANTED){
-                takePhoto();;
+                takePhoto();
             }
         }
 
@@ -127,14 +130,10 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
         super.onActivityResult(requestCode , resultCode, data);
             //check if we are receiving the result from the right request.
             //Also check whether the data null, meaning the user may have cancelled.
-            //if(requestCode== REQUEST_IMAGE_CAPTURE && data !=null){
-              //  Bitmap bitmap =(Bitmap) data.getExtras().get("data");
-                //imgCameraImage.setImageBitmap(bitmap);
-                //testing
-                if(requestCode ==REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
-                    Bundle extras = data.getExtras();
-                    Bitmap imageBitmap =(Bitmap) extras.get("data");
-                    imgCameraImage.setImageBitmap(imageBitmap);
+            if(requestCode== REQUEST_IMAGE_CAPTURE && data !=null){
+               Bitmap bitmap =(Bitmap) data.getExtras().get("data");
+                imgCameraImage.setImageBitmap(bitmap);
+
                 }
 
             //}
@@ -157,9 +156,6 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
             super.onBackPressed();
         }
     }
-
-
-
 
     }
 

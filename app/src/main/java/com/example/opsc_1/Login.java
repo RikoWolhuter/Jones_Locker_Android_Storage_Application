@@ -33,17 +33,31 @@ public class Login extends AppCompatActivity {
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+/*
+String tempUsername = Username.getText().toString();
+                String tempPassword = Password.getText().toString();
+
+                String name = getIntent().getStringExtra("sendUsername");
+                String goal = getIntent().getStringExtra("sendPassword");
+
+                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword) && (tempUsername).equals(name) && (tempPassword).equals(goal)){
+                    openMainPage();
+ */
+
 
                 String tempUsername = Username.getText().toString();
                 String tempPassword = Password.getText().toString();
 
-                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword)) {//&& (tempUsername).equals(getterAndsetter.getUsername()) && (tempPassword).equals(getterAndsetter.getPassword())
+                String name = getIntent().getStringExtra("sendUsername");
+                String goal = getIntent().getStringExtra("sendPassword");
+
+                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword) && (tempUsername).equals(name) && (tempPassword).equals(goal)){
                     openMainPage();
                 }
                 else{
                     Toast.makeText(Login.this, "Please complete all the fields and make sure login details are correct", Toast.LENGTH_SHORT).show();
                 }
-
+//
 
             }
         });

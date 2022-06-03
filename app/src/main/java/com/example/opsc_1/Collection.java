@@ -12,8 +12,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -24,21 +22,14 @@ import com.google.android.material.navigation.NavigationView;
 
 public class Collection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Button addbtnN;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
-    private ImageButton add;
-    private ImageButton sort;
-
 
     private ListView lstvCollections;
     private List<String> collectionsList;
     private ArrayAdapter<String> collectionAdapter;
-    private ArrayList<EditText> ac;
-    private ArrayAdapter<String>acAdp;
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -69,7 +60,8 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.collection_main);
-
+        ImageButton add;
+        ImageButton sort;
         String name;
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -154,17 +146,6 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
             //otherwise, let the super class handle it
             super.onBackPressed();
         }
-    }
-
-    public void AddingCollections(){
-        ac = new ArrayList<>();
-        EditText N = findViewById(R.id.ETName);
-        EditText G = findViewById(R.id.ETGoal);
-        ac.add(N);
-        ac.add(G);
-        ArrayAdapter acAdp = new ArrayList<String>(this,R.layout.add_collection,N.getId());
-        ListView coll = (ListView) findViewById(R.id.lstv_collections);
-        coll.setAdapter(acAdp);
     }
 
 

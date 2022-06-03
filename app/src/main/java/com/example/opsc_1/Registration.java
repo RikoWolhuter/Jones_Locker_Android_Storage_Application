@@ -70,12 +70,28 @@ public class Registration extends AppCompatActivity {
                 if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword) &&
                         !TextUtils.isEmpty(tempconfirmPassword) &&
                         !TextUtils.isEmpty(tempgmail) && tempPassword.equals(tempconfirmPassword)) {
-                    getterAndsetter.setUsername(tempUsername);
-                    getterAndsetter.setPassword(tempPassword);
-                    getterAndsetter.setGmail(tempgmail);
 
+                    /*
 
-                    Register();
+                    Intent intent = new Intent(Registration.this,Login.class);
+
+                    tempUsername = Username.getText().toString();
+                    tempPassword = Password.getText().toString();
+                    intent.putExtra("sendUsername",tempUsername);
+                    intent.putExtra("sendPassword",tempPassword);
+
+                    startActivity(intent);
+                     */
+
+                    Intent intent = new Intent(Registration.this,Login.class);
+
+                    tempUsername = Username.getText().toString();
+                    tempPassword = Password.getText().toString();
+                    intent.putExtra("sendUsername",tempUsername);
+                    intent.putExtra("sendPassword",tempPassword);
+
+                    startActivity(intent);
+
                 }
                 else{
                     Toast.makeText(Registration.this, "Please complete all the fields", Toast.LENGTH_SHORT).show();
@@ -92,10 +108,7 @@ public class Registration extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void Register() {
-        Intent intent = new Intent(this,Login.class);
-        startActivity(intent);
-    }
+
 
 
 /*

@@ -1,4 +1,6 @@
 package com.example.opsc_1;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,9 +9,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +26,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.awt.font.TextAttribute;
+import java.io.IOException;
 
 
 public class AddCollection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -31,6 +37,8 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
     private NavigationView navigationView;
     int SELECT_PICTURE = 200;
     ImageView collectionImage;
+
+
     //created int variable to capture the goal J-L
     int goal;
 
@@ -64,8 +72,9 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_collection);
 
+        //Remove night mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
+        //add navigation
         toolbar = findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -76,12 +85,14 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
         drawerLayout.addDrawerListener(toggleOnOff);
         toggleOnOff.syncState();
 
-
+        //navigation settings
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
 
+        //Collection Name added by user
         EditText name = findViewById(R.id.ETName);
+        //Goal of the Collection added by user
         EditText goal = findViewById(R.id.ETGoal);
 
 
@@ -94,15 +105,49 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
                 imageChooser();
             }
         });
+        //Add button to add new Collection to list
         Button add = findViewById(R.id.addcollectionbtn);
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Store Name of Collection in tempName
                 String tempName = name.getText().toString();
+                //Store Goal of Collection in tempGoal
+                String tempGoal = goal.getText().toString();
+                Boolean  bool = true;
+                //save image to next view
+                collectionImage.setDrawingCacheEnabled(true);
+                Bitmap b = collectionImage.getDrawingCache();
+
+
+
+                Intent intent = new Intent(AddCollection.this,Collection.class);
+                //Send name & goal to Collection Class
+                intent.putExtra("sendname",tempName);
+                intent.putExtra("sendgoal",tempGoal);
+                intent.putExtra("clicked",bool);
+
+                startActivity(intent);
+
+                Intent intent2 = new Intent(AddCollection.this,AddItem.class);
+                intent2.putExtra("Bitmap",b);
+
+                finish();
+
+            }
+        });
+        /*
+         Button add = findViewById(R.id.addcollectionbtn);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Store Name of Collection in tempName
+                String tempName = name.getText().toString();
+                //Store Goal of Collection in tempGoal
                 String tempGoal = goal.getText().toString();
 
                 Intent intent = new Intent(AddCollection.this,Collection.class);
+                //Send name & goal to Collection Class
                 intent.putExtra("sendname",tempName);
                 intent.putExtra("sendgoal",tempGoal);
                 startActivity(intent);
@@ -110,26 +155,57 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
 
             }
         });
+         */
 
     }
     //Allow User access to gallery
-    void imageChooser(){
-        //Creating instance of the intent of type image
+    private void imageChooser()
+    {
         Intent i = new Intent();
-        i.setType("image/");
+        i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(i,"Select Picture"),SELECT_PICTURE);
 
+        launchSomeActivity.launch(i);
     }
+
+    ActivityResultLauncher<Intent> launchSomeActivity
+            = registerForActivityResult(
+            new ActivityResultContracts
+                    .StartActivityForResult(),
+            result -> {
+                if (result.getResultCode()
+                        == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+                    // do your operation from here....
+                    if (data != null
+                            && data.getData() != null) {
+                        Uri selectedImageUri = data.getData();
+                        Bitmap selectedImageBitmap = null;
+                        try {
+                            selectedImageBitmap
+                                    = MediaStore.Images.Media.getBitmap(
+                                    this.getContentResolver(),
+                                    selectedImageUri);
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        collectionImage.setImageBitmap(
+                                selectedImageBitmap);
+                    }
+                }
+            });
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            //Compare resultCode with SELECT_Picture constant
+
+            // compare the resultCode with the
+            // SELECT_PICTURE constant
             if (requestCode == SELECT_PICTURE) {
-                //get Url of image from data
+                // Get the url of the image from data
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
-                    //update the preview image in the layout
+                    // update the preview image in the layout
                     collectionImage.setImageURI(selectedImageUri);
                 }
             }

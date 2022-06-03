@@ -69,13 +69,13 @@
                     android:layout_height="40dp" />
 
                 <EditText
-                    android:id="@+id/ETName"
+                    android:id="@+id/NameOfItem"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center"
+                    android:hint="Add a Name"
                     android:inputType="textPersonName"
-                    android:text="Add a Name"
                     android:textColor="#807575"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Add a description for this item"
+                    android:hint="Add a description for this item"
                     android:textSize="24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -126,7 +126,7 @@
                     android:layout_height="20dp" />
 
                 <EditText
-                    android:id="@+id/ETGoal"
+                    android:id="@+id/Description"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
