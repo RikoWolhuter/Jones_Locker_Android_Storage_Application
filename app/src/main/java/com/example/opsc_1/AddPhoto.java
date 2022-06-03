@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,9 +28,9 @@ import com.google.android.material.navigation.NavigationView;
 public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
         private FloatingActionButton fab;
-        private ImageView imgCameraImage;
-       private static final int REQUEST_IMAGE_CAPTURE_PERMISSION = 100;
-        private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int CAMERA_REQUEST = 1888;
+    private ImageView imageView;
+    private static final int MY_CAMERA_PERMISSION_CODE = 100;
 
 
         private Toolbar toolbar;
@@ -88,64 +89,62 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
             //Camera floating Action Button to take image
             fab= findViewById(R.id.floatingActionButton);
             //Img will be replaced with Image User takes
-            imgCameraImage= findViewById(R.id.profileImage);
+            imageView= findViewById(R.id.profileImage);
 
 
-            fab.setOnClickListener(new View.OnClickListener() {
 
+            fab.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
-                public void onClick(View view) {
-
-                    //check if we have camera permission
-                    if(ActivityCompat.checkSelfPermission(AddPhoto.this, Manifest.permission.CAMERA)
-                            != PackageManager.PERMISSION_GRANTED){
-                        final String[] permissions ={Manifest.permission.CAMERA};
-                        //Request permission- this is asynchronous
-                        ActivityCompat.requestPermissions(AddPhoto.this,
-                                permissions, REQUEST_IMAGE_CAPTURE_PERMISSION);
-                    }else
+                public void onClick(View v)
+                {
+                    if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
                     {
-                        //we have permission, so take the photo
-                        takePhoto();
+                        requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
+                    }
+                    else
+                    {
+                        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(cameraIntent, CAMERA_REQUEST);
                     }
                 }
             });
+
         }
         //Camera Permissions
         @Override
         public void onRequestPermissionsResult(int requestCode,
                                                @NonNull String[] permissions,
                                                @NonNull int[] grantResults){
-            super.onRequestPermissionsResult(requestCode,permissions,grantResults);
-            if(requestCode == REQUEST_IMAGE_CAPTURE_PERMISSION &&
-                    ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)==
-                            PackageManager.PERMISSION_GRANTED){
-                takePhoto();;
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (requestCode == MY_CAMERA_PERMISSION_CODE)
+            {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
+                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                }
+                else
+                {
+                    Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
+                }
             }
         }
 
         @Override
         protected void onActivityResult(int requestCode, int resultCode,@Nullable  Intent data){
         super.onActivityResult(requestCode , resultCode, data);
-            //check if we are receiving the result from the right request.
-            //Also check whether the data null, meaning the user may have cancelled.
-            if(requestCode== REQUEST_IMAGE_CAPTURE && data !=null){
-               Bitmap bitmap =(Bitmap) data.getExtras().get("data");
-                imgCameraImage.setImageBitmap(bitmap);
-                //testing
-                //if(requestCode ==REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
-                  //  Bundle extras = data.getExtras();
-                    //Bitmap imageBitmap =(Bitmap) extras.get("data");
-                    //imgCameraImage.setImageBitmap(imageBitmap);
-                }
+            if (requestCode == CAMERA_REQUEST && resultCode == AddPhoto.RESULT_OK)
+            {
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(photo);
+            }
 
-            //}
+
         }
 
-        private void takePhoto(){
-            Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(i,REQUEST_IMAGE_CAPTURE);
-        }
+
 
 
 
