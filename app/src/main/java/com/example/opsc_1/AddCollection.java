@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,8 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
     private NavigationView navigationView;
     int SELECT_PICTURE = 200;
     ImageView collectionImage;
+
+
     //created int variable to capture the goal J-L
     int goal;
 
@@ -107,13 +110,23 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
                 //Store Goal of Collection in tempGoal
                 String tempGoal = goal.getText().toString();
                 Boolean  bool = true;
+                //save image to next view
+                collectionImage.setDrawingCacheEnabled(true);
+                Bitmap b = collectionImage.getDrawingCache();
+
+
 
                 Intent intent = new Intent(AddCollection.this,Collection.class);
                 //Send name & goal to Collection Class
                 intent.putExtra("sendname",tempName);
                 intent.putExtra("sendgoal",tempGoal);
                 intent.putExtra("clicked",bool);
+
                 startActivity(intent);
+
+                Intent intent2 = new Intent(AddCollection.this,AddItem.class);
+                intent2.putExtra("Bitmap",b);
+
                 finish();
 
             }
@@ -142,22 +155,28 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
     }
     //Allow User access to gallery
     void imageChooser(){
-        //Creating instance of the intent of type image
+        // create an instance of the
+        // intent of the type image
         Intent i = new Intent();
-        i.setType("image/");
+        i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(i,"Select Picture"),SELECT_PICTURE);
+
+        // pass the constant to compare it
+        // with the returned requestCode
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
 
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            //Compare resultCode with SELECT_Picture constant
+
+            // compare the resultCode with the
+            // SELECT_PICTURE constant
             if (requestCode == SELECT_PICTURE) {
-                //get Url of image from data
+                // Get the url of the image from data
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
-                    //update the preview image in the layout
+                    // update the preview image in the layout
                     collectionImage.setImageURI(selectedImageUri);
                 }
             }

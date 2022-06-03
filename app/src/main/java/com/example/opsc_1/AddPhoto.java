@@ -120,7 +120,7 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
             if(requestCode == REQUEST_IMAGE_CAPTURE_PERMISSION &&
                     ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)==
                             PackageManager.PERMISSION_GRANTED){
-                takePhoto();;
+                takePhoto();
             }
         }
 
@@ -132,11 +132,7 @@ public class AddPhoto extends AppCompatActivity implements NavigationView.OnNavi
             if(requestCode== REQUEST_IMAGE_CAPTURE && data !=null){
                Bitmap bitmap =(Bitmap) data.getExtras().get("data");
                 imgCameraImage.setImageBitmap(bitmap);
-                //testing
-                //if(requestCode ==REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
-                  //  Bundle extras = data.getExtras();
-                    //Bitmap imageBitmap =(Bitmap) extras.get("data");
-                    //imgCameraImage.setImageBitmap(imageBitmap);
+
                 }
 
             //}

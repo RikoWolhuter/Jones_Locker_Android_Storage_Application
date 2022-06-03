@@ -196,9 +196,13 @@ Collection extends AppCompatActivity implements NavigationView.OnNavigationItemS
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String CollectionItem = acAdp.getItem(position);
 
+
+
                 Intent intent = new Intent(Collection.this,AddItem.class);//sort listview class for collection
                 intent.putExtra("sendnameItem",name);
                 intent.putExtra("sendgoalItem",goal);
+
+
                 startActivity(intent);
             }
         });

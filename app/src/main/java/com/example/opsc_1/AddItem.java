@@ -11,13 +11,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -33,19 +32,10 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
 
-    private String nameItem;
-    private String goalItem;
-
-    private String nameItem_1;
-    private String goalItem_1;
-
     ListView lstvCollections2;
+    private ListView lstvItems;
     private List<String> itemList;
     private ArrayAdapter<String> itemAdapter;
-
-    //itemList = new ArrayList<>();
-    //lstvItems = findViewById(R.id.lstv_items);
-
     ImageView ProfileImage;
     int SELECT_PICTURE = 200;
     private String name;
@@ -81,7 +71,7 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item_main);
-        ArrayAdapter_1();
+        //ArrayAdapter_1();
 /*
         TextView NameOfColl = findViewById(R.id.CollName);
         TextView NameofGoa = findViewById(R.id.GoalCollection);
@@ -111,7 +101,8 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        itemList = new ArrayList<>();
+        lstvItems = findViewById(R.id.lstv_items);
         //Image widget
         ProfileImage= findViewById(R.id.profileImage);
         ProfileImage.setOnClickListener(new View.OnClickListener() {
@@ -156,30 +147,50 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
 
     public void ArrayAdapter_1(){
 
+        //buttonForClickEvent = (Button)findViewById(R.id.addcollectionbtn);
+        // TextView displayName = findViewById(R.id.ETName);
 
-        nameItem = getIntent().getStringExtra("sendnameItem");
-        goalItem = getIntent().getStringExtra("sendgoalItem");
 
-        TextView NameColl = findViewById(R.id.CollName);
-        TextView GoalColl = findViewById(R.id.GoalCollection);
 
-        NameColl.setText(String.valueOf(nameItem));
-        GoalColl.setText(String.valueOf(goalItem));
+        //Boolean click_OnContinue = getIntent().getBooleanExtra("clicked",true);
+        name = getIntent().getStringExtra("sendnameOfItem");
+        description = getIntent().getStringExtra("sendDescription");
+        //displayName.setText(String.valueOf(name));
+        //TextView displayGoal = findViewById(R.id.ETGoal);
+        String ListView_Item = name;
 
-        nameItem_1 = getIntent().getStringExtra("sendnameOfItem");
-        goalItem_1 = getIntent().getStringExtra("sendDescription");
-        //String ListView_Item_1 = ;
-
+        //displayName.setText(String.valueOf(goal));
         lstvCollections2 = (ListView) findViewById(R.id.lstv_items);
 
-        ArrayList<String> arrayList1 = new ArrayList<>();
+        ArrayList<String> arrayList = new ArrayList<>();
 
-        arrayList1.add("home");
+        //while(click_OnContinue = true) {
+        arrayList.add(ListView_Item);
+        //click_OnContinue = false;
+        //}
+
+
+
+
+
+
 
         ArrayAdapter<String> acAdp1 = new ArrayAdapter(this,R.layout.custom_list_1,
-                R.id.text_item,arrayList1);
+                R.id.text_item,arrayList);
 
         lstvCollections2.setAdapter(acAdp1);
+
+        lstvCollections2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String CollectionItem = acAdp1.getItem(position);
+
+                Intent intent = new Intent(AddItem.this,ItemDetailsDescription.class);//sort listview class for collection
+                intent.putExtra("sendnameItem_Details",name);
+                intent.putExtra("sendDescription_Details",description);
+                startActivity(intent);
+            }
+        });
 
 
 
