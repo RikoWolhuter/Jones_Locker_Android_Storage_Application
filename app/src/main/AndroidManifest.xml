@@ -20,15 +20,7 @@
         android:theme="@style/Theme.OPSC_1"
         android:requestLegacyExternalStorage="true"
         >
-        <provider
-            android:authorities="com.example.opsc_1.fileProvider"
-            android:name="androidx.core.content.FileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_path" />
-        </provider>
+
 
 
         <activity

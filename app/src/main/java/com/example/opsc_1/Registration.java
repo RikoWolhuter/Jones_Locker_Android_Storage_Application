@@ -26,7 +26,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class Registration extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference registerUsers = database.getReference("register");
+    private DatabaseReference registerUsers = database.getReference("Jone's Locker");
 
     private GetterAndSetters getterAndsetter;
     private TextView Username;
@@ -70,6 +70,9 @@ public class Registration extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String name = "username";
+                String pass = "password";
+
 
                 String tempUsername = Username.getText().toString();
                 String tempPassword = Password.getText().toString();
@@ -90,10 +93,14 @@ public class Registration extends AppCompatActivity {
                     //intent.putExtra("sendUsername",tempUsername);
                     //intent.putExtra("sendPassword",tempPassword);
 
-                    register.setC_userName(tempUsername);
-                    register.setC_Password_1(tempPassword);
+                    //register.setC_userName(tempUsername);
+                    //register.setC_Password_1(tempPassword);
+                    //registerUsers.push().setValue(register);
 
-                    registerUsers.push().setValue(register);
+                    registerUsers.child("users").child(name).setValue(tempUsername);
+                    registerUsers.child("users").child(pass).setValue(tempPassword);
+
+
 
                     startActivity(intent);
 

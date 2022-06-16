@@ -3,20 +3,34 @@ package com.example.opsc_1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class Login extends AppCompatActivity {
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference registerUsers = database.getReference("Jone's Locker");
+
     private GetterAndSetters getterAndsetter;
     private TextView Username;
     private TextView Password;
     private Button log;
     private Button reg;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,31 +47,56 @@ public class Login extends AppCompatActivity {
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/*
-String tempUsername = Username.getText().toString();
-                String tempPassword = Password.getText().toString();
-
-                String name = getIntent().getStringExtra("sendUsername");
-                String goal = getIntent().getStringExtra("sendPassword");
-
-                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword) && (tempUsername).equals(name) && (tempPassword).equals(goal)){
-                    openMainPage();
- */
-
-
                 String tempUsername = Username.getText().toString();
                 String tempPassword = Password.getText().toString();
 
-                String name = getIntent().getStringExtra("sendUsername");
-                String goal = getIntent().getStringExtra("sendPassword");
+                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword)) {
+                    registerUsers.child("users").orderByChild("user").equalTo(tempUsername).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            /*
+                            for (DataSnapshot user : dataSnapshot.getChildren()) {
+                                if (usersBean.password.equals(tempPassword)) {
+                                    Toast.makeText(Login.this, "success", Toast.LENGTH_SHORT).show();
+                                    openMainPage();
+                                } else {
+                                    Toast.makeText(Login.this, "password incorrect", Toast.LENGTH_SHORT).show();
+                                }
 
-                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword) && (tempUsername).equals(name) && (tempPassword).equals(goal)){
-                    openMainPage();
+                            }
+                            */
+
+                            registerUsers.child("users").orderByChild("pass").equalTo(tempPassword).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    openMainPage();
+
+                                }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        Toast.makeText(Login.this, "Make sure password is correct", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                        }
+
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            Toast.makeText(Login.this, "Make sure username is correct", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 else{
-                    Toast.makeText(Login.this, "Please complete all the fields and make sure login details are correct", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Please complete all the fields", Toast.LENGTH_SHORT).show();
                 }
-//
+
+
+
+
 
             }
         });
@@ -80,6 +119,7 @@ String tempUsername = Username.getText().toString();
         Intent intent = new Intent(Login.this, MainActivity.class);
         startActivity(intent);
     }
+
 
 
 
