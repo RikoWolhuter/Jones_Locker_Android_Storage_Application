@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "987340244766",
-    "firebase_url": "https://opsc-3b38c-default-rtdb.firebaseio.com",
-    "project_id": "opsc-3b38c",
-    "storage_bucket": "opsc-3b38c.appspot.com"
+    "project_number": "696525800367",
+    "firebase_url": "https://jone-s-locker-default-rtdb.firebaseio.com",
+    "project_id": "jone-s-locker",
+    "storage_bucket": "jone-s-locker.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:987340244766:android:1c779dc9760ff1c64e2b0f",
+        "mobilesdk_app_id": "1:696525800367:android:18d77115adeb36ce59a55a",
         "android_client_info": {
           "package_name": "com.example.opsc_1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "987340244766-g0l5dr7beqslb8sl6cufvdq20qc0n2j5.apps.googleusercontent.com",
+          "client_id": "696525800367-b007u7rtssk72931r6eda4h0anosl10h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDQCHfxRra8VHVqVmhjIxajVESeWmzvdis"
+          "current_key": "AIzaSyB6YHfxDKCrYB0NfeKwkHvvs-zw3YM9vks"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "987340244766-g0l5dr7beqslb8sl6cufvdq20qc0n2j5.apps.googleusercontent.com",
+              "client_id": "696525800367-b007u7rtssk72931r6eda4h0anosl10h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -81,7 +81,7 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         navigationView.setNavigationItemSelectedListener(this);
 
         collectionsList = new ArrayList<>();
-        lstvCollections = findViewById(R.id.lstv_collections);
+        lstvCollections = findViewById(R.id.lstv_collections_1);
 
         add = (ImageButton) findViewById(R.id.Addbtn);
         sort = (ImageButton) findViewById(R.id.Sortbtn);

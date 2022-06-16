@@ -17,11 +17,16 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Registration extends AppCompatActivity {
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference registerUsers = database.getReference("register");
 
     private GetterAndSetters getterAndsetter;
     private TextView Username;
@@ -29,10 +34,15 @@ public class Registration extends AppCompatActivity {
     private TextView confirmPassword;
     private TextView gmail;
 
+    private Register_Class register;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
+
+        register = new Register_Class();
 
         getterAndsetter = new GetterAndSetters();
 
@@ -71,24 +81,19 @@ public class Registration extends AppCompatActivity {
                         !TextUtils.isEmpty(tempconfirmPassword) &&
                         !TextUtils.isEmpty(tempgmail) && tempPassword.equals(tempconfirmPassword)) {
 
-                    /*
+
 
                     Intent intent = new Intent(Registration.this,Login.class);
 
                     tempUsername = Username.getText().toString();
                     tempPassword = Password.getText().toString();
-                    intent.putExtra("sendUsername",tempUsername);
-                    intent.putExtra("sendPassword",tempPassword);
+                    //intent.putExtra("sendUsername",tempUsername);
+                    //intent.putExtra("sendPassword",tempPassword);
 
-                    startActivity(intent);
-                     */
+                    register.setC_userName(tempUsername);
+                    register.setC_Password_1(tempPassword);
 
-                    Intent intent = new Intent(Registration.this,Login.class);
-
-                    tempUsername = Username.getText().toString();
-                    tempPassword = Password.getText().toString();
-                    intent.putExtra("sendUsername",tempUsername);
-                    intent.putExtra("sendPassword",tempPassword);
+                    registerUsers.push().setValue(register);
 
                     startActivity(intent);
 
@@ -106,6 +111,30 @@ public class Registration extends AppCompatActivity {
     public void openLoginPage() {
         Intent intent = new Intent(this,Login.class);
         startActivity(intent);
+    }
+    public class Register_Class {
+        public Register_Class() {
+
+        }
+
+        public String getC_userName() {
+            return C_userName;
+        }
+
+        public void setC_userName(String c_userName) {
+            C_userName = c_userName;
+        }
+
+        public String getC_Password_1() {
+            return C_Password_1;
+        }
+
+        public void setC_Password_1(String c_Password_1) {
+            C_Password_1 = c_Password_1;
+        }
+
+        private String C_userName;
+        private String C_Password_1;
     }
 
 
