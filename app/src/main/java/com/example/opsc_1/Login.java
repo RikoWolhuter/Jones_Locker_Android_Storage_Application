@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class Login extends AppCompatActivity {
     private TextView Password;
     private Button log;
     private Button reg;
-
+    private Registration.User storedClass;
 
 
     @Override
@@ -49,14 +50,16 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String tempUsername = Username.getText().toString();
                 String tempPassword = Password.getText().toString();
+                Query loginQuery = registerUsers.child("users").orderByChild("userName").equalTo(tempUsername);
 
                 if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword)) {
-                    registerUsers.child("users").orderByChild("user").equalTo(tempUsername).addValueEventListener(new ValueEventListener() {
+                    loginQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            /*
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
                             for (DataSnapshot user : dataSnapshot.getChildren()) {
-                                if (usersBean.password.equals(tempPassword)) {
+                                storedClass = user.getValue(Registration.User.class);
+                                if (tempPassword.equals(storedClass.getPassword())) {
                                     Toast.makeText(Login.this, "success", Toast.LENGTH_SHORT).show();
                                     openMainPage();
                                 } else {
@@ -64,21 +67,9 @@ public class Login extends AppCompatActivity {
                                 }
 
                             }
-                            */
 
-                            registerUsers.child("users").orderByChild("pass").equalTo(tempPassword).addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    openMainPage();
 
-                                }
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                        Toast.makeText(Login.this, "Make sure password is correct", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
 
                         }
 
@@ -119,6 +110,8 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(Login.this, MainActivity.class);
         startActivity(intent);
     }
+
+
 
 
 

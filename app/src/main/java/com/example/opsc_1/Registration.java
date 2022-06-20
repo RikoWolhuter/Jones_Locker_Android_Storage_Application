@@ -70,8 +70,9 @@ public class Registration extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = "username";
-                String pass = "password";
+                String userName = "username";
+                String passWord = "password";
+                String Gmail = "gmail";
 
 
                 String tempUsername = Username.getText().toString();
@@ -90,15 +91,16 @@ public class Registration extends AppCompatActivity {
 
                     tempUsername = Username.getText().toString();
                     tempPassword = Password.getText().toString();
+                    tempgmail = gmail.getText().toString();
                     //intent.putExtra("sendUsername",tempUsername);
                     //intent.putExtra("sendPassword",tempPassword);
 
                     //register.setC_userName(tempUsername);
                     //register.setC_Password_1(tempPassword);
                     //registerUsers.push().setValue(register);
-
-                    registerUsers.child("users").child(name).setValue(tempUsername);
-                    registerUsers.child("users").child(pass).setValue(tempPassword);
+                    registerUsers.child("users").child(Gmail).setValue(tempgmail);
+                    registerUsers.child("users").child(userName).setValue(tempUsername);
+                    registerUsers.child("users").child(passWord).setValue(tempPassword);
 
 
 
@@ -118,6 +120,41 @@ public class Registration extends AppCompatActivity {
     public void openLoginPage() {
         Intent intent = new Intent(this,Login.class);
         startActivity(intent);
+    }
+
+    public class User{
+        public User(){
+
+        }
+
+        private String username;
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public String getGmail() {
+            return gmail;
+        }
+
+        public void setGmail(String gmail) {
+            this.gmail = gmail;
+        }
+
+        private String password;
+        private String gmail;
     }
     public class Register_Class {
         public Register_Class() {
@@ -143,6 +180,8 @@ public class Registration extends AppCompatActivity {
         private String C_userName;
         private String C_Password_1;
     }
+
+
 
 
 
