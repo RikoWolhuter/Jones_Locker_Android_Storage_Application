@@ -3,6 +3,8 @@ package com.example.opsc_1;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -20,6 +22,9 @@ public class Medal extends AppCompatActivity implements View.OnClickListener, Na
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
+    private ImageView imgMedal;
+    private TextView MedalName;
+    private int Medal_lvl = 0;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -66,6 +71,26 @@ public class Medal extends AppCompatActivity implements View.OnClickListener, Na
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
+
+        imgMedal = findViewById(R.id.Medal);
+        MedalName = findViewById(R.id.MedalName);
+
+        if(Medal_lvl >= 300){
+            imgMedal.setImageResource(R.drawable.gold_big);
+            MedalName.setText("Gold");
+        }
+        if(Medal_lvl >= 200 && Medal_lvl < 300){
+            imgMedal.setImageResource(R.drawable.silver_big);
+            MedalName.setText("Silver");
+        }
+        if(Medal_lvl >= 100 && Medal_lvl < 200){
+            imgMedal.setImageResource(R.drawable.bronz_big);
+            MedalName.setText("Bronze");
+        }
+        else{
+            imgMedal.setImageResource(R.drawable.nomedal);
+            MedalName.setText("No medal");
+        }
     }
 
     @Override

@@ -51,7 +51,7 @@
                     android:layout_height="20dp" />
 
                 <ImageView
-                    android:id="@+id/profileImage"
+                    android:id="@+id/Medal"
                     android:layout_width="411dp"
                     android:layout_height="386dp"
                     app:srcCompat="@drawable/photo_placeholder" />
@@ -61,7 +61,7 @@
                     android:layout_height="20dp" />
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/MedalName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
