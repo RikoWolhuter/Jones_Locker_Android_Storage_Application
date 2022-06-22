@@ -32,6 +32,7 @@ public class Login extends AppCompatActivity {
     private Registration.User storedClass;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String tempUsername = Username.getText().toString();
                 String tempPassword = Password.getText().toString();
-                Query loginQuery = registerUsers.child("users").orderByChild("username").equalTo(tempUsername);
+                Query loginQuery = registerUsers.child("users").child("Karmen").orderByChild("username").equalTo(tempUsername);//Fix this
 
                 if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword)) {
                     loginQuery.addListenerForSingleValueEvent(new ValueEventListener() {

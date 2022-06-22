@@ -109,9 +109,9 @@ public class Registration extends AppCompatActivity {
                     //generate random values from 0-1999999999
                     int ID = rand.nextInt(upperbound);
 
+                    //"user "+Integer.toString(ID)
 
-
-                    writeNewUser("user "+Integer.toString(ID) , tempUsername, tempgmail, tempPassword);
+                    writeNewUser(tempUsername , tempUsername, tempgmail, tempPassword);
 
 
 
