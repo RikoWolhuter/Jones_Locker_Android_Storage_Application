@@ -7,10 +7,52 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.BarGraphSeries;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 
-public class Graph extends AppCompatActivity {
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
+
+public class Graph extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     GraphView graphView;
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggleOnOff;
+    private NavigationView navigationView;
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
+    {
+        switch(item.getItemId()){
+            case R.id.nav_photo:
+                IntentHelper.openIntent(this, AddPhoto.class);
+                break;
+            case R.id.nav_collection:
+                IntentHelper.openIntent(this, Collection.class);
+                break;
+            case R.id.nav_graph:
+                IntentHelper.openIntent(this, Graph.class);//Class must be for Graph
+                break;
+            case R.id.nav_progression:
+                IntentHelper.openIntent(this, Goal.class);//Class must be for Goals
+                break;
+            case R.id.nav_profile:
+                IntentHelper.openIntent(this, Profile.class);
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        //returning true marks the item as selected
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,5 +89,16 @@ public class Graph extends AppCompatActivity {
         graphView.setTitleTextSize(18);
 
         graphView.addSeries(series);
+    }
+
+    @Override
+    public void onBackPressed(){
+        //if the drawer is open, close it
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else{
+            //otherwise, let the super class handle it
+            super.onBackPressed();
+        }
     }
 }
