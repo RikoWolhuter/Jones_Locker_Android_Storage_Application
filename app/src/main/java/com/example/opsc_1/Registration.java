@@ -111,7 +111,7 @@ public class Registration extends AppCompatActivity {
 
                     //"user "+Integer.toString(ID)
 
-                    writeNewUser(tempUsername , tempUsername, tempgmail, tempPassword);
+                    writeNewUser(tempUsername, tempgmail, tempPassword);
 
 
 
@@ -128,10 +128,10 @@ public class Registration extends AppCompatActivity {
 
     }
 
-    public void writeNewUser(String userId, String name, String gmail_, String password) {
+    public void writeNewUser(String name, String gmail_, String password) {
         User user = new User(name, gmail_, password);
 
-        registerUsers.child("users").child(userId).setValue(user);
+        registerUsers.child("users").setValue(user);
 
 
     }
