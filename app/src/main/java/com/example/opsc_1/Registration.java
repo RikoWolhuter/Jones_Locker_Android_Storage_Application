@@ -106,12 +106,12 @@ public class Registration extends AppCompatActivity {
 
                     Random rand = new Random(); //instance of random class
                     int upperbound = 1999999999;
-                    //generate random values from 0-24
+                    //generate random values from 0-1999999999
                     int ID = rand.nextInt(upperbound);
 
 
 
-                    writeNewUser(Integer.toString(ID) , tempUsername, tempgmail, tempPassword);
+                    writeNewUser("user "+Integer.toString(ID) , tempUsername, tempgmail, tempPassword);
 
 
 
