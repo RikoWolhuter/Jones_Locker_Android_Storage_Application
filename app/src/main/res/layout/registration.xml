@@ -17,7 +17,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/_4dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

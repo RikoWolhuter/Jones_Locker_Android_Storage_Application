@@ -1,22 +1,29 @@
 package com.example.opsc_1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.IgnoreExtraProperties;
@@ -29,12 +36,13 @@ import java.util.Random;
 public class Registration extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference registerUsers = database.getReference("Jone's Locker");
+    private FirebaseAuth mAuth;
 
     private GetterAndSetters getterAndsetter;
-    private TextView Username;
-    private TextView Password;
-    private TextView confirmPassword;
-    private TextView gmail;
+    private EditText Username;
+    private EditText Password;
+    private EditText confirmPassword;
+    private EditText gmail;
 
 
 
@@ -49,14 +57,15 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
 
+        mAuth = FirebaseAuth.getInstance();
 
 
         getterAndsetter = new GetterAndSetters();
 
-        Username = findViewById(R.id.username_input);
-        Password =  findViewById(R.id.password_input);
-        confirmPassword = findViewById(R.id.confirmPassword_input);
-        gmail = findViewById(R.id.gmail_input);
+        Username = (EditText) findViewById(R.id.username_input);
+        Password = (EditText) findViewById(R.id.password_input);
+        confirmPassword = (EditText) findViewById(R.id.confirmPassword_input);
+        gmail = (EditText) findViewById(R.id.gmail_input);
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
@@ -80,23 +89,23 @@ public class Registration extends AppCompatActivity {
 
 
 
-                tempUsername = Username.getText().toString();
-                tempPassword = Password.getText().toString();
-                tempconfirmPassword = confirmPassword.getText().toString();
-                tempgmail = gmail.getText().toString();
+                tempUsername = Username.getText().toString().trim();
+                tempPassword = Password.getText().toString().trim();
+                tempconfirmPassword = confirmPassword.getText().toString().trim();
+                tempgmail = gmail.getText().toString().trim();
 
 
-                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword) &&
-                        !TextUtils.isEmpty(tempconfirmPassword) &&
-                        !TextUtils.isEmpty(tempgmail) && tempPassword.equals(tempconfirmPassword)) {
+                if(!tempUsername.isEmpty() && !tempPassword.isEmpty() &&
+                        !tempconfirmPassword.isEmpty() &&
+                        !tempgmail.isEmpty() && tempPassword.equals(tempconfirmPassword) && Patterns.EMAIL_ADDRESS.matcher(tempgmail).matches() && tempPassword.length() > 6) {
 
 
 
                     Intent intent = new Intent(Registration.this,Login.class);
 
-                    tempUsername = Username.getText().toString();
-                    tempPassword = Password.getText().toString();
-                    tempgmail = gmail.getText().toString();
+                    tempUsername = Username.getText().toString().trim();
+                    tempPassword = Password.getText().toString().trim();
+                    tempgmail = gmail.getText().toString().trim();
                     //intent.putExtra("sendUsername",tempUsername);
                     //intent.putExtra("sendPassword",tempPassword);
 
@@ -104,14 +113,25 @@ public class Registration extends AppCompatActivity {
                     //register.setC_Password_1(tempPassword);
                     //registerUsers.push().setValue(register);
 
-                    Random rand = new Random(); //instance of random class
-                    int upperbound = 1999999999;
-                    //generate random values from 0-1999999999
-                    int ID = rand.nextInt(upperbound);
+
 
                     //"user "+Integer.toString(ID)
 
+                    //writeNewUser(tempUsername, tempgmail, tempPassword);
+
+mAuth.createUserWithEmailAndPassword(tempgmail, tempPassword)
+        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
                     writeNewUser(tempUsername, tempgmail, tempPassword);
+                }
+                else{
+                    Toast.makeText(Registration.this, "User has not been created", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
 
 
 
@@ -119,7 +139,7 @@ public class Registration extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(Registration.this, "Please complete all the fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Registration.this, "Please complete all the fields, insert a valid Gmail and make sure password length is more than 6 characters", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -131,9 +151,19 @@ public class Registration extends AppCompatActivity {
     public void writeNewUser(String name, String gmail_, String password) {
         User user = new User(name, gmail_, password);
 
-        registerUsers.child("users").setValue(user);
-
-
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(Registration.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(Registration.this, "user has not been authenticated", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     public void openLoginPage() {
