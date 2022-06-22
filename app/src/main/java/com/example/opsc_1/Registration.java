@@ -19,10 +19,12 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.IgnoreExtraProperties;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.util.Random;
 
 public class Registration extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -34,7 +36,12 @@ public class Registration extends AppCompatActivity {
     private TextView confirmPassword;
     private TextView gmail;
 
-    private Register_Class register;
+
+
+    public String tempUsername;
+    public String tempPassword;
+    public String tempconfirmPassword;
+    public String tempgmail;
 
 
     @Override
@@ -42,7 +49,7 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
 
-        register = new Register_Class();
+
 
         getterAndsetter = new GetterAndSetters();
 
@@ -70,15 +77,13 @@ public class Registration extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userName = "username";
-                String passWord = "password";
-                String Gmail = "gmail";
 
 
-                String tempUsername = Username.getText().toString();
-                String tempPassword = Password.getText().toString();
-                String tempconfirmPassword = confirmPassword.getText().toString();
-                String tempgmail = gmail.getText().toString();
+
+                tempUsername = Username.getText().toString();
+                tempPassword = Password.getText().toString();
+                tempconfirmPassword = confirmPassword.getText().toString();
+                tempgmail = gmail.getText().toString();
 
 
                 if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword) &&
@@ -98,9 +103,15 @@ public class Registration extends AppCompatActivity {
                     //register.setC_userName(tempUsername);
                     //register.setC_Password_1(tempPassword);
                     //registerUsers.push().setValue(register);
-                    registerUsers.child("users").child(Gmail).setValue(tempgmail);
-                    registerUsers.child("users").child(userName).setValue(tempUsername);
-                    registerUsers.child("users").child(passWord).setValue(tempPassword);
+
+                    Random rand = new Random(); //instance of random class
+                    int upperbound = 1999999999;
+                    //generate random values from 0-24
+                    int ID = rand.nextInt(upperbound);
+
+
+
+                    writeNewUser(Integer.toString(ID) , tempUsername, tempgmail, tempPassword);
 
 
 
@@ -117,69 +128,38 @@ public class Registration extends AppCompatActivity {
 
     }
 
+    public void writeNewUser(String userId, String name, String gmail_, String password) {
+        User user = new User(name, gmail_, password);
+
+        registerUsers.child("users").child(userId).setValue(user);
+
+
+    }
+
     public void openLoginPage() {
         Intent intent = new Intent(this,Login.class);
         startActivity(intent);
     }
 
+    @IgnoreExtraProperties
     public class User{
+
+
+        public String username;
+        public String password;
+        public String gmail_;
+
         public User(){
 
         }
 
-        private String username;
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
+        public User(String username, String gmail_, String password) {
             this.username = username;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
+            this.gmail_ = gmail_;
             this.password = password;
         }
-
-        public String getGmail() {
-            return gmail;
-        }
-
-        public void setGmail(String gmail) {
-            this.gmail = gmail;
-        }
-
-        private String password;
-        private String gmail;
     }
-    public class Register_Class {
-        public Register_Class() {
 
-        }
-
-        public String getC_userName() {
-            return C_userName;
-        }
-
-        public void setC_userName(String c_userName) {
-            C_userName = c_userName;
-        }
-
-        public String getC_Password_1() {
-            return C_Password_1;
-        }
-
-        public void setC_Password_1(String c_Password_1) {
-            C_Password_1 = c_Password_1;
-        }
-
-        private String C_userName;
-        private String C_Password_1;
-    }
 
 
 
