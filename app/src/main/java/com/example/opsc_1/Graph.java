@@ -36,7 +36,7 @@ public class Graph extends AppCompatActivity {
         // after adding data to our line graph series.
         // on below line we are setting
         // title for our graph view.
-        graphView.setTitle("My Graph View");
+        graphView.setTitle("Goal progression");
 
         // on below line we are setting
         // text color to our graph view.
