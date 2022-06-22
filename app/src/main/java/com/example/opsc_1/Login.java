@@ -50,7 +50,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String tempUsername = Username.getText().toString();
                 String tempPassword = Password.getText().toString();
-                Query loginQuery = registerUsers.child("users").orderByChild("userName").equalTo(tempUsername);
+                Query loginQuery = registerUsers.child("users").orderByChild("username").equalTo(tempUsername);
 
                 if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword)) {
                     loginQuery.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -59,7 +59,7 @@ public class Login extends AppCompatActivity {
 
                             for (DataSnapshot user : dataSnapshot.getChildren()) {
                                 storedClass = user.getValue(Registration.User.class);
-                                if (tempPassword.equals(storedClass.getPassword())) {
+                                if (tempPassword.equals(storedClass.password)) {
                                     Toast.makeText(Login.this, "success", Toast.LENGTH_SHORT).show();
                                     openMainPage();
                                 } else {
