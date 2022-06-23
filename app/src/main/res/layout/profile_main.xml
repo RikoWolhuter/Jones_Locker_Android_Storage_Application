@@ -129,6 +129,28 @@ android:layout_height="match_parent">
                     android:layout_height="20dp" />
 
                 <TextView
+                    android:id="@+id/textViewEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email:"
+                    android:textColor="#131313"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Email"
+                    android:layout_width="332dp"
+                    android:layout_height="41dp"
+                    android:hint="Enter your email" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
