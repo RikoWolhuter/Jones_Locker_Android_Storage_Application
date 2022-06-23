@@ -98,13 +98,15 @@ public class Graph extends AppCompatActivity implements NavigationView.OnNavigat
 
         // on below line we are setting
         // text color to our graph view.
-        graphView.setTitleColor(R.color.purple_200);
+
+        //graphView.setTitleColor(R.color.purple_200); HAS A BUG THAT NEEDS FIXING
 
         // on below line we are setting
         // our title text size.
-        graphView.setTitleTextSize(18);
 
-        graphView.addSeries(series);
+        //graphView.setTitleTextSize(18); HAS A BUG THAT NEEDS FIXING
+
+        //graphView.addSeries(series); HAS A BUG THAT NEEDS FIXING
     }
 
     @Override
