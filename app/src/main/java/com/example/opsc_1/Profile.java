@@ -34,14 +34,19 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
 
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference registerUsers = FirebaseDatabase.getInstance().getReference("Users");
 
-    //private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //private DatabaseReference registerUsers = database.getReference("Jone's Locker");
+
 
     private DatabaseReference reference;
     private String userID;
 
     Registration.User userProfile;
+
+    private String fullname;
+    private String gmail;
+    private String password;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -100,7 +105,7 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
         });
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
+
         userID = user.getUid();
 
         final TextView NameTextView = (TextView) findViewById(R.id.Name);
@@ -109,7 +114,7 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
 
         //reference.child(userID).
 
-        reference.child(userID).addValueEventListener(new ValueEventListener() {
+        registerUsers.child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -119,16 +124,16 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
                     for(DataSnapshot ProfileSnapshot : dataSnapshot.getChildren()){
                         userProfile = ProfileSnapshot.getValue(Registration.User.class);
 
-                        userProfile.getUsername();
-                        userProfile.getGmail_();
-                        userProfile.getPassword();
+                        fullname = userProfile.getUsername().toString();
+                        gmail = userProfile.getGmail_().toString();
+                        password = userProfile.getPassword().toString();
+
+
 
                     }
 
                     if(userProfile != null){
-                        String fullname = userProfile.getUsername();
-                        String gmail = userProfile.getGmail_();
-                        String password = userProfile.getPassword();
+
 
                         //userProfile.password;
 
