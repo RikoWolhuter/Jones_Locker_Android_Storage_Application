@@ -1,8 +1,10 @@
 package com.example.opsc_1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,12 +15,16 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class Profile extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class Profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
+    private Button logout;
+
+    private FirebaseAuth mAuth;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -65,13 +71,19 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
+
+        logout = (Button) findViewById(R.id.LogOut);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(Profile.this, Login.class));
+            }
+        });
     }
 
-    @Override
-    public  void onClick(View v)
-    {
 
-    }
 
     @Override
     public void onBackPressed(){

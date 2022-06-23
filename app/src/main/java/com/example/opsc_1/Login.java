@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -68,8 +69,16 @@ public class Login extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if(task.isSuccessful()){
-                                //redirect to user profile
-                                openMainPage();
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                if(user.isEmailVerified()){
+                                    //redirect to user profile
+                                    openMainPage();
+                                }else{
+                                    user.sendEmailVerification();
+                                    Toast.makeText(Login.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
+                                }
+
                             }else{
                                 Toast.makeText(Login.this, "Failed to login! Please check your credentials", Toast.LENGTH_LONG).show();
                             }
