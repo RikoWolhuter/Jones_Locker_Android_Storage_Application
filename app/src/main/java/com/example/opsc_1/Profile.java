@@ -41,6 +41,8 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
     private DatabaseReference reference;
     private String userID;
 
+    Registration.User userProfile;
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
@@ -107,17 +109,28 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
 
         //reference.child(userID).
 
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 try{
-                    Registration.User userProfile = dataSnapshot.getValue(Registration.User.class);
+                    //Registration.User userProfile = dataSnapshot.getValue(Registration.User.class);
+
+                    for(DataSnapshot ProfileSnapshot : dataSnapshot.getChildren()){
+                        userProfile = ProfileSnapshot.getValue(Registration.User.class);
+
+                        userProfile.getUsername();
+                        userProfile.getGmail_();
+                        userProfile.getPassword();
+
+                    }
 
                     if(userProfile != null){
-                        String fullname = userProfile.username;
-                        String gmail = userProfile.gmail_;
-                        String password = userProfile.password;
+                        String fullname = userProfile.getUsername();
+                        String gmail = userProfile.getGmail_();
+                        String password = userProfile.getPassword();
+
+                        //userProfile.password;
 
                         NameTextView.setText(fullname);
                         PassTextView.setText(password);
