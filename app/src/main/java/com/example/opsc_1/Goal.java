@@ -99,7 +99,9 @@ public class Goal extends AppCompatActivity implements NavigationView.OnNavigati
 
         ArrayList<String> arrayList1 = new ArrayList<>();
 
-        arrayList1.add("goals");
+        //Temporary value to see if it works
+        arrayList1.add("goal1");
+        arrayList1.add("goal2");
 
         ArrayAdapter<String> acAdp1 = new ArrayAdapter(this, R.layout.custom_list_2,
                 R.id.text_item, arrayList1);

@@ -92,7 +92,7 @@ public class Graph extends AppCompatActivity implements NavigationView.OnNavigat
         // after adding data to our line graph series.
         // on below line we are setting
         // title for our graph view.
-        graphView.setTitle("Goal progression");
+        //graphView.setTitle("Goal progression");
 
         // on below line we are setting
         // text color to our graph view.
