@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,10 +29,11 @@ import com.google.firebase.database.ValueEventListener;
 public class Login extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference registerUsers = database.getReference("Jone's Locker");
+    private FirebaseAuth mAuth;
 
     private GetterAndSetters getterAndsetter;
-    private TextView Username;
-    private TextView Password;
+    private EditText Gmail;
+    private EditText Password;
     private Button log;
     private Button reg;
     private Registration.User storedClass;
@@ -40,8 +47,10 @@ public class Login extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getterAndsetter = new GetterAndSetters();
 
-        Username = findViewById(R.id.Username_input_Login);
-        Password =  findViewById(R.id.Password_input_Login);
+        mAuth = FirebaseAuth.getInstance();
+
+        Gmail = (EditText) findViewById(R.id.Username_input_Login);
+        Password = (EditText) findViewById(R.id.Password_input_Login);
 
 
         log = findViewById(R.id.loginbtn);
@@ -49,38 +58,24 @@ public class Login extends AppCompatActivity {
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String tempUsername = Username.getText().toString();
-                String tempPassword = Password.getText().toString();
-                Query loginQuery = registerUsers.child("users").orderByChild("username").equalTo(tempUsername);//Fix this
+                String tempGmail = Gmail.getText().toString().trim();
+                String tempPassword = Password.getText().toString().trim();
 
-                if(!TextUtils.isEmpty(tempUsername) && !TextUtils.isEmpty(tempPassword)) {
-                    loginQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                if(!tempGmail.isEmpty() && !tempPassword.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(tempGmail).matches() && tempPassword.length() > 6) {
+                    mAuth.signInWithEmailAndPassword(tempGmail, tempPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            for (DataSnapshot user : dataSnapshot.getChildren()) {
-                                storedClass = user.getValue(Registration.User.class);
-                                if (tempPassword.equals(storedClass.password)) {
-                                    Toast.makeText(Login.this, "success", Toast.LENGTH_SHORT).show();
-                                    openMainPage();
-                                } else {
-                                    Toast.makeText(Login.this, "password incorrect", Toast.LENGTH_SHORT).show();
-                                }
-
+                            if(task.isSuccessful()){
+                                //redirect to user profile
+                                openMainPage();
+                            }else{
+                                Toast.makeText(Login.this, "Failed to login! Please check your credentials", Toast.LENGTH_LONG).show();
                             }
-
-
-
-
-                        }
-
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            Toast.makeText(Login.this, "Make sure username is correct", Toast.LENGTH_SHORT).show();
                         }
                     });
+
                 }
                 else{
                     Toast.makeText(Login.this, "Please complete all the fields", Toast.LENGTH_SHORT).show();
