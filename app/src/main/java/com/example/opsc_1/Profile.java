@@ -102,6 +102,8 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
         final TextView PassTextView = (TextView) findViewById(R.id.Password);
         final TextView EmailTextView = (TextView) findViewById(R.id.Email);
 
+        //reference.child(userID).
+
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
