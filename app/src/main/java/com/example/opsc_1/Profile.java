@@ -35,6 +35,9 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
     private FirebaseAuth mAuth;
     private FirebaseUser user;
 
+    //private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //private DatabaseReference registerUsers = database.getReference("Jone's Locker");
+
     private DatabaseReference reference;
     private String userID;
 
@@ -106,18 +109,27 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Registration.User userProfile = snapshot.getValue(Registration.User.class);
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if(userProfile != null){
-                    String fullname = userProfile.username;
-                    String gmail = userProfile.gmail_;
-                    String password = userProfile.password;
+                try{
+                    Registration.User userProfile = dataSnapshot.getValue(Registration.User.class);
 
-                    NameTextView.setText(fullname);
-                    PassTextView.setText(password);
-                    EmailTextView.setText(gmail);
+                    if(userProfile != null){
+                        String fullname = userProfile.username;
+                        String gmail = userProfile.gmail_;
+                        String password = userProfile.password;
+
+                        NameTextView.setText(fullname);
+                        PassTextView.setText(password);
+                        EmailTextView.setText(gmail);
+                    }
                 }
+                catch(Exception e){
+                    Toast.makeText(Profile.this, "DataSnapShotError!", Toast.LENGTH_LONG).show();
+                }
+
+
+
             }
 
             @Override

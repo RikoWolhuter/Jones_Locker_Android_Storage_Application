@@ -176,6 +176,19 @@ mAuth.createUserWithEmailAndPassword(tempgmail, tempPassword)
 
 
         public String username;
+
+        public String getUsername() {
+            return username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public String getGmail_() {
+            return gmail_;
+        }
+
         public String password;
         public String gmail_;
 
