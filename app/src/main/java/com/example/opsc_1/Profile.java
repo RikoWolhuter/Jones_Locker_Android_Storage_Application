@@ -16,6 +16,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
@@ -25,6 +28,10 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
     private Button logout;
 
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
+
+    private DatabaseReference reference;
+    private String userID;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -81,6 +88,10 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
             startActivity(new Intent(Profile.this, Login.class));
             }
         });
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = user.getUid();
     }
 
 
