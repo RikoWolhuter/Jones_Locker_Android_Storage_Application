@@ -111,7 +111,7 @@ android:layout_height="match_parent">
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date of Birth:"
+                    android:text="Age:"
                     android:textColor="#131313"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -123,7 +123,7 @@ android:layout_height="match_parent">
                     android:id="@+id/DoB"
                     android:layout_width="332dp"
                     android:layout_height="41dp"
-                    android:hint="Enter your date of birth" />
+                    android:hint="Enter your age" />
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
