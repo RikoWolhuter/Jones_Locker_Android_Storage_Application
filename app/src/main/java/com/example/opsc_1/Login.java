@@ -39,6 +39,8 @@ public class Login extends AppCompatActivity {
     private Button reg;
     private Registration.User storedClass;
 
+    private TextView forgotPassword;
+
 
 
     @Override
@@ -49,6 +51,9 @@ public class Login extends AppCompatActivity {
         getterAndsetter = new GetterAndSetters();
 
         mAuth = FirebaseAuth.getInstance();
+
+        forgotPassword = (TextView) findViewById(R.id.RecoverPassID);
+
 
         Gmail = (EditText) findViewById(R.id.Username_input_Login);
         Password = (EditText) findViewById(R.id.Password_input_Login);
@@ -94,6 +99,14 @@ public class Login extends AppCompatActivity {
 
 
 
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick (View view){
+                Intent intent = new Intent(Login.this,ForgotPassword.class);
+                startActivity(intent);
             }
         });
 
