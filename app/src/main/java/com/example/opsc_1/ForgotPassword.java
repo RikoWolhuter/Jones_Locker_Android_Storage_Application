@@ -3,6 +3,7 @@ package com.example.opsc_1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -17,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ForgotPassword extends AppCompatActivity {
 
     private EditText emailEditText;
-    private Button resetPasswordButton;
+    private Button resetPasswordButton, GobackToLoginButton;
 
     FirebaseAuth auth;
 
@@ -28,12 +29,21 @@ public class ForgotPassword extends AppCompatActivity {
 
         emailEditText = (EditText) findViewById(R.id.RecoverGmail);
         resetPasswordButton = (Button) findViewById(R.id.RecoverPassID_);
+        GobackToLoginButton = (Button) findViewById(R.id.goBackToLogin1);
         auth = FirebaseAuth.getInstance();
 
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             resetPassword();
+            }
+        });
+
+        GobackToLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ForgotPassword.this,Login.class);
+                startActivity(intent);
             }
         });
     }
