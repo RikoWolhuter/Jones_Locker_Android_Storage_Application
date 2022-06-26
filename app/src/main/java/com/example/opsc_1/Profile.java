@@ -114,37 +114,23 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
 
         //reference.child(userID).
 
-        registerUsers.child(userID).addValueEventListener(new ValueEventListener() {
+        registerUsers.child(userID).child("gmail_").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                try{
-                    //Registration.User userProfile = dataSnapshot.getValue(Registration.User.class);
-
-                    for(DataSnapshot ProfileSnapshot : dataSnapshot.getChildren()){
-                        userProfile = ProfileSnapshot.getValue(Registration.User.class);
-
-                        fullname = userProfile.getUsername().toString();
-                        gmail = userProfile.getGmail_().toString();
-                        password = userProfile.getPassword().toString();
-
-
-
-                    }
-
-                    if(userProfile != null){
-
-
-                        //userProfile.password;
-
-                        NameTextView.setText(fullname);
-                        PassTextView.setText(password);
-                        EmailTextView.setText(gmail);
-                    }
+                if (dataSnapshot.exists()) {
+                    EmailTextView.setText(dataSnapshot.getValue(String.class));
                 }
-                catch(Exception e){
-                    Toast.makeText(Profile.this, "DataSnapShotError!", Toast.LENGTH_LONG).show();
+                else{
+                    EmailTextView.setText("Not found");
                 }
+                        //PassTextView.setText(password);
+                        //EmailTextView.setText(gmail);
+
+
+
+                    //Toast.makeText(Profile.this, "DataSnapShotError!", Toast.LENGTH_LONG).show();
+
 
 
 
