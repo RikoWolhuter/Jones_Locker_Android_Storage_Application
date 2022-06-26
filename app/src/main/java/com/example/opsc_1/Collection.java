@@ -1,5 +1,6 @@
 package com.example.opsc_1;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -19,6 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Collection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,7 +37,15 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
 
     private ListView lstvCollections;
     private List<String> collectionsList;
-    private ArrayAdapter<String> collectionAdapter;
+
+
+    private FirebaseUser user;
+    private String userID;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    private DatabaseReference registerUsers = database.getReference("Jone's Locker");
+    private FirebaseAuth mAuth;
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -64,6 +80,8 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         ImageButton sort;
         String name;
 
+        mAuth = FirebaseAuth.getInstance();
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         toolbar = findViewById(R.id.nav_toolbar);
@@ -81,7 +99,40 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         navigationView.setNavigationItemSelectedListener(this);
 
         collectionsList = new ArrayList<>();
-        lstvCollections = findViewById(R.id.lstv_collections_1);
+        lstvCollections = (ListView) findViewById(R.id.lstv_collections_1);
+
+
+        final ArrayAdapter<String> collectionAdapter = new ArrayAdapter<String>(Collection.this, R.layout.custom_list,collectionsList);
+        lstvCollections.setAdapter(collectionAdapter);
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child("Paintings").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            String value = snapshot.getValue(String.class);
+            collectionsList.add(value);
+            collectionAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                collectionAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         add = (ImageButton) findViewById(R.id.Addbtn);
         sort = (ImageButton) findViewById(R.id.Sortbtn);
