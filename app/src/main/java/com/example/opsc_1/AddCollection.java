@@ -232,12 +232,12 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
 
 
         FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(tempName)
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(tempName).child("Name")
                 .setValue(tempName).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(AddCollection.this, "Name of collection has been added to the collection!", Toast.LENGTH_LONG).show();
+
                 }
                 else{
                     Toast.makeText(AddCollection.this, "Name has not been added", Toast.LENGTH_LONG).show();
@@ -246,12 +246,12 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
         });
 
         FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(tempGoal)
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(tempName).child("Goal")
                 .setValue(tempGoal).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(AddCollection.this, "Goal of collection has been added to the collection!", Toast.LENGTH_LONG).show();
+
                 }
                 else{
                     Toast.makeText(AddCollection.this, "Goal has not been added!", Toast.LENGTH_LONG).show();
