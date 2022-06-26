@@ -141,6 +141,62 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
                 Toast.makeText(Profile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
+
+        registerUsers.child(userID).child("password").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+                    PassTextView.setText(dataSnapshot.getValue(String.class));
+                }
+                else{
+                    PassTextView.setText("Not found");
+                }
+                //PassTextView.setText(password);
+                //EmailTextView.setText(gmail);
+
+
+
+                //Toast.makeText(Profile.this, "DataSnapShotError!", Toast.LENGTH_LONG).show();
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Profile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        registerUsers.child(userID).child("username").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+                    NameTextView.setText(dataSnapshot.getValue(String.class));
+                }
+                else{
+                    NameTextView.setText("Not found");
+                }
+                //PassTextView.setText(password);
+                //EmailTextView.setText(gmail);
+
+
+
+                //Toast.makeText(Profile.this, "DataSnapShotError!", Toast.LENGTH_LONG).show();
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Profile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 
