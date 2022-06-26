@@ -22,14 +22,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.awt.font.TextAttribute;
 import java.io.IOException;
 
 
 public class AddCollection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference registerUsers = database.getReference("Jone's Locker");
+    private FirebaseAuth mAuth;
+
+    private String tempName;
+    private String tempGoal;
+
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -72,6 +85,8 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_collection);
 
+        mAuth = FirebaseAuth.getInstance();
+
         //Remove night mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         //add navigation
@@ -111,9 +126,9 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
             @Override
             public void onClick(View view) {
                 //Store Name of Collection in tempName
-                String tempName = name.getText().toString();
+                tempName = name.getText().toString().trim();
                 //Store Goal of Collection in tempGoal
-                String tempGoal = goal.getText().toString();
+                tempGoal = goal.getText().toString().trim();
                 Boolean  bool = true;
                 //save image to next view
                 collectionImage.setDrawingCacheEnabled(true);
@@ -123,8 +138,9 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
 
                 Intent intent = new Intent(AddCollection.this,Collection.class);
                 //Send name & goal to Collection Class
-                intent.putExtra("sendname",tempName);
-                intent.putExtra("sendgoal",tempGoal);
+
+                AddCollectionToDatabase();
+
                 intent.putExtra("clicked",bool);
 
                 startActivity(intent);
@@ -210,6 +226,38 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
                 }
             }
         }
+    }
+
+    public void AddCollectionToDatabase() {
+
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(tempName)
+                .setValue(tempName).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(AddCollection.this, "Name of collection has been added to the collection!", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(AddCollection.this, "Name has not been added", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(tempGoal)
+                .setValue(tempGoal).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(AddCollection.this, "Goal of collection has been added to the collection!", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(AddCollection.this, "Goal has not been added!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     @Override
