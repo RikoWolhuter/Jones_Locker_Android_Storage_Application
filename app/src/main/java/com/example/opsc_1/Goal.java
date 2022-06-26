@@ -104,7 +104,7 @@ public class Goal extends AppCompatActivity implements NavigationView.OnNavigati
         arrayList1.add("goal2");
 
         ArrayAdapter<String> acAdp1 = new ArrayAdapter(this, R.layout.custom_list_2,
-                R.id.text_item, arrayList1);
+                R.id.text_item1, arrayList1);
 
         lstvCollections3.setAdapter(acAdp1);
     }

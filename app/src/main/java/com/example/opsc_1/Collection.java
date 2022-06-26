@@ -102,7 +102,7 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         lstvCollections = (ListView) findViewById(R.id.lstv_collections_1);
 
 
-        final ArrayAdapter<String> collectionAdapter = new ArrayAdapter<String>(Collection.this, R.layout.custom_list,collectionsList);
+        final ArrayAdapter<String> collectionAdapter = new ArrayAdapter<String>(Collection.this, R.layout.custom_list,R.id.text,collectionsList);
         lstvCollections.setAdapter(collectionAdapter);
         FirebaseDatabase.getInstance().getReference("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child("Paintings").addChildEventListener(new ChildEventListener() {

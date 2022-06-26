@@ -22,7 +22,7 @@
         android:padding="1dp">
 
         <TextView
-            android:id="@+id/text_item"
+            android:id="@+id/text_item1"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_weight="1"
