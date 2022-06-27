@@ -28,12 +28,19 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddItem extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference registerUsers = database.getReference("Jone's Locker");
+    private FirebaseAuth mAuth;
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;

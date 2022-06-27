@@ -2,9 +2,11 @@ package com.example.opsc_1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +38,8 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
     private FirebaseUser user;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference registerUsers = FirebaseDatabase.getInstance().getReference("Users");
-
+    private int Medal_lvl = 0;
+    private ImageView imgMedalProfile;
 
 
     private DatabaseReference reference;
@@ -77,7 +80,25 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_main);
+        mAuth = FirebaseAuth.getInstance();
 
+
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Medal_lvl =Integer.parseInt(value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         toolbar = findViewById(R.id.nav_toolbar);
@@ -197,7 +218,35 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
                 Toast.makeText(Profile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
+        imgMedalProfile = findViewById(R.id.MedalProfile);
+
+        if(Medal_lvl >= 300){
+            imgMedalProfile.setImageResource(R.drawable.gold__1_);
+
+        }
+        if(Medal_lvl >= 200 && Medal_lvl < 300){
+            imgMedalProfile.setImageResource(R.drawable.silver__1_);
+
+        }
+        if(Medal_lvl >= 100 && Medal_lvl < 200){
+            imgMedalProfile.setImageResource(R.drawable.bronze__1_);
+
+        }
+        else{
+            imgMedalProfile.setImageResource(R.drawable.silver_faded);
+
+        }
+
+
+        imgMedalProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(Profile.this, Medal.class));
+            }
+        });
     }
+
 
 
 
