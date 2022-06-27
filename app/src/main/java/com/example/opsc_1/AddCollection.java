@@ -230,6 +230,22 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
 
     public void AddCollectionToDatabase() {
 
+        String StringForCollection = tempName + " " + tempGoal;
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringCollections").child(tempName)
+                .setValue(StringForCollection).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                }
+                else{
+                    Toast.makeText(AddCollection.this, "Name has not been added", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
 
         FirebaseDatabase.getInstance().getReference("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(tempName).child("Name")
