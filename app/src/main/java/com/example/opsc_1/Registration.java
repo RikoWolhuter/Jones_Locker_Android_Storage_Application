@@ -164,6 +164,19 @@ mAuth.createUserWithEmailAndPassword(tempgmail, tempPassword)
                 }
             }
         });
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level")
+                .setValue("0").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(Registration.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(Registration.this, "user has not been authenticated", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     public void openLoginPage() {
