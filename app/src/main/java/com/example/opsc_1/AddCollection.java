@@ -25,14 +25,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.awt.font.TextAttribute;
 import java.io.IOException;
+import java.util.HashMap;
 
 
 public class AddCollection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -42,6 +47,8 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
 
     private String tempName;
     private String tempGoal;
+
+    private int Medal_lvl = 0;
 
 
     private Toolbar toolbar;
@@ -140,6 +147,39 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
                 //Send name & goal to Collection Class
 
                 AddCollectionToDatabase();
+
+                FirebaseDatabase.getInstance().getReference("Users")
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // This method is called once with the initial value and again
+                        // whenever data at this location is updated.
+                        String value = dataSnapshot.getValue(String.class);
+                        Medal_lvl =Integer.parseInt(value);
+
+                        int Medal_lvl_Increase = Medal_lvl + 30;
+                        String Medal_lvl_IncreaseString = Integer.toString(Medal_lvl_Increase);
+
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("Medal_Level",Medal_lvl_IncreaseString);
+
+                        FirebaseDatabase.getInstance().getReference("Users")
+                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level")
+                                .updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                            @Override
+                            public void onSuccess(Object o) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.w("TAG", "Failed to read value.", error.toException());
+                    }
+                });
+
+
 
                 intent.putExtra("clicked",bool);
 

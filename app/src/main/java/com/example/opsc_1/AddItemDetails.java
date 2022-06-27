@@ -18,7 +18,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class AddItemDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,6 +36,8 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
     private NavigationView navigationView;
     int SELECT_PICTURE = 200;
     ImageView ImageGallery;
+
+    private int Medal_lvl = 0;
 
     //variable to capture the amount of times a user has created an item, counter starts at 0, J-L
     int counter = 0;
@@ -94,6 +104,8 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
         continueToItems.setOnClickListener(new View.OnClickListener(){
                                                @Override
                                                public  void onClick(View v) {
+
+
                                                    EditText name1 = findViewById(R.id.NameOfItem);
                                                    //Goal of the Collection added by user
                                                    EditText Description1 = findViewById(R.id.Description);
@@ -105,10 +117,39 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
 
                                                    Intent intent = new Intent(AddItemDetails.this, AddItem.class);
 
-                                                   intent.putExtra("sendnameOfItem",tempName);
-                                                   intent.putExtra("sendDescription",tempDescription);
+
 
                                                    startActivity(intent);
+                                                   FirebaseDatabase.getInstance().getReference("Users")
+                                                           .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").addValueEventListener(new ValueEventListener() {
+                                                       @Override
+                                                       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                           // This method is called once with the initial value and again
+                                                           // whenever data at this location is updated.
+                                                           String value = dataSnapshot.getValue(String.class);
+                                                           Medal_lvl =Integer.parseInt(value);
+
+                                                           int Medal_lvl_Increase = Medal_lvl + 30;
+                                                           String Medal_lvl_IncreaseString = Integer.toString(Medal_lvl_Increase);
+
+                                                           HashMap hashMap = new HashMap();
+                                                           hashMap.put("Medal_Level",Medal_lvl_IncreaseString);
+
+                                                           FirebaseDatabase.getInstance().getReference("Users")
+                                                                   .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level")
+                                                                   .updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                                                               @Override
+                                                               public void onSuccess(Object o) {
+
+                                                               }
+                                                           });
+                                                       }
+
+                                                       @Override
+                                                       public void onCancelled(@NonNull DatabaseError error) {
+                                                           Log.w("TAG", "Failed to read value.", error.toException());
+                                                       }
+                                                   });
                                                    finish();
                                                }
                                                });
