@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -17,6 +18,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ItemDetailsDescription extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -54,6 +60,39 @@ public class ItemDetailsDescription extends AppCompatActivity implements Navigat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details_description);
+
+        final TextView NameTextView = (TextView) findViewById(R.id.Name_Description);
+        final TextView DescriptionTextView = (TextView) findViewById(R.id.Description_Description);
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(CollectionItemClicked1).child("Items").child(tempDescription).child("Description")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        if (dataSnapshot.exists()) {
+                            NameTextView.setText(dataSnapshot.getValue(String.class));
+                        }
+                        else{
+                            NameTextView.setText("Not found");
+                        }
+                        //PassTextView.setText(password);
+                        //EmailTextView.setText(gmail);
+
+
+
+                        //Toast.makeText(Profile.this, "DataSnapShotError!", Toast.LENGTH_LONG).show();
+
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(ItemDetailsDescription.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+                    }
+                });
 
         String name = getIntent().getStringExtra("sendnameItem_Details");
         String Description = getIntent().getStringExtra("sendDescription_Details");

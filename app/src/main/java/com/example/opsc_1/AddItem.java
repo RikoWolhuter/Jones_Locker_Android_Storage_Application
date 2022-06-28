@@ -127,6 +127,7 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
         setContentView(R.layout.add_item_main);
 
         intentItem1 = new Intent(this, AddItemDetails.class);
+        intentItemDetails = new Intent(this, ItemDetailsDescription.class);
 
         Intent SecondIntent = getIntent();
         Intent ThirdIntent = getIntent();
@@ -231,6 +232,8 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
 
         public void onItemClick(AdapterView parent, View view, int i, long l) {
             String itemValue  = ((String) lstvCollections2.getItemAtPosition(i)).trim();
+            //CollectionForStringDatabase
+
 
 
 
