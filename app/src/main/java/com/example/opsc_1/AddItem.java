@@ -103,7 +103,8 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item_main);
 
-
+        TextView NameOfColl = (TextView) findViewById(R.id.CollName);
+        NameOfColl.setText(CollectionItemClicked);
 
         ArrayAdapter_1();
 /*
