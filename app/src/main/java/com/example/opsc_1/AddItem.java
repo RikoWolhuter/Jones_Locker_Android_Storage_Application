@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,6 +54,11 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
+
+    TextView NameOfColl;
+    TextView GoalColl;
+
+    String CollectionForStringDatabase = NameOfColl.getText().toString();
 
     private String nameItem;
     private String goalItem;
@@ -76,6 +84,13 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     String CollectionItemClicked1;
     String CollectionItemClicked2;
     String CollectionItemClicked3;
+
+    private FirebaseUser user;
+    private String userID;
+
+
+
+
 
 
 
@@ -115,11 +130,11 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
         Intent ThirdIntent = getIntent();
 
         CollectionItemClicked = SecondIntent.getStringExtra("Collection selected");
-        TextView NameOfColl = (TextView) findViewById(R.id.CollName);
+        NameOfColl = (TextView) findViewById(R.id.CollName);
         NameOfColl.setText(CollectionItemClicked);
 
         CollectionItemClicked1 = SecondIntent.getStringExtra("Collection selected Goal");
-        TextView GoalColl = (TextView) findViewById(R.id.GoalCollection);
+        GoalColl = (TextView) findViewById(R.id.GoalCollection);
         GoalColl.setText(CollectionItemClicked1);
         if(NameOfColl.equals(null)) {
             CollectionItemClicked2 = ThirdIntent.getStringExtra("Collection show");
@@ -210,38 +225,48 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
 
     public void ArrayAdapter_1() {
 
+        itemList = new ArrayList<>();
+        lstvCollections2 = (ListView) findViewById(R.id.lstv_collections_1);
 
 
+        final ArrayAdapter<String> collectionAdapter = new ArrayAdapter<String>(AddItem.this, R.layout.custom_list_1,R.id.text_item,itemList);
+        lstvCollections2.setAdapter(collectionAdapter);
 
 
-
-        goalItem_1 = getIntent().getStringExtra("sendDescription");
-        //String ListView_Item_1 = ;
-
-        lstvCollections2 = (ListView) findViewById(R.id.lstv_items);
-
-        ArrayList<String> arrayList1 = new ArrayList<>();
-
-
-
-        ArrayAdapter<String> acAdp1 = new ArrayAdapter(this, R.layout.custom_list_1,
-                R.id.text_item, arrayList1);
-
-        lstvCollections2.setAdapter(acAdp1);
-        lstvCollections2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringItems").child(CollectionForStringDatabase).addChildEventListener(new ChildEventListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String CollectionItem = acAdp1.getItem(position);
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                String value = snapshot.getValue(String.class);
+                itemList.add(value);
+                collectionAdapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                collectionAdapter.notifyDataSetChanged();
+            }
 
-                Intent intent = new Intent(AddItem.this, ItemDetailsDescription.class);//sort listview class for collection
-                //intent.putExtra("sendnameItem",name);
-                // intent.putExtra("sendgoalItem",goal);
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
+            }
 
-                startActivity(intent);
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
+
+
+
+
 
 
     }
