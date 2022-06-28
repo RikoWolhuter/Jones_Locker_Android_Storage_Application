@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -70,8 +71,7 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     private String name;
     private String description;
 
-    Intent intent = getIntent();
-    String CollectionItemClicked = intent.getExtras().getString("Collection selected");
+
 
 
     @Override
@@ -103,8 +103,15 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item_main);
 
+        Intent SecondIntent = getIntent();
+
+        String CollectionItemClicked = SecondIntent.getStringExtra("Collection selected");
         TextView NameOfColl = (TextView) findViewById(R.id.CollName);
         NameOfColl.setText(CollectionItemClicked);
+
+        String CollectionItemClicked1 = SecondIntent.getStringExtra("Collection selected Goal");
+        TextView GoalColl = (TextView) findViewById(R.id.GoalCollection);
+        GoalColl.setText(CollectionItemClicked1);
 
         ArrayAdapter_1();
 /*
@@ -185,16 +192,10 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     public void ArrayAdapter_1() {
 
 
-        nameItem = getIntent().getStringExtra("sendnameItem");
-        goalItem = getIntent().getStringExtra("sendgoalItem");
 
-        TextView NameColl = findViewById(R.id.CollName);
-        TextView GoalColl = findViewById(R.id.GoalCollection);
 
-        NameColl.setText(String.valueOf(nameItem));
-        GoalColl.setText(String.valueOf(goalItem));
 
-        nameItem_1 = getIntent().getStringExtra("sendnameOfItem");
+
         goalItem_1 = getIntent().getStringExtra("sendDescription");
         //String ListView_Item_1 = ;
 
@@ -202,7 +203,7 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
 
         ArrayList<String> arrayList1 = new ArrayList<>();
 
-        arrayList1.add("home");
+
 
         ArrayAdapter<String> acAdp1 = new ArrayAdapter(this, R.layout.custom_list_1,
                 R.id.text_item, arrayList1);

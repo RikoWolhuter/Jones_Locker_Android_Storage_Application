@@ -48,6 +48,8 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
     private DatabaseReference registerUsers = database.getReference("Jone's Locker");
     private FirebaseAuth mAuth;
 
+    Intent intentItem;
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -82,6 +84,8 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
         ImageButton sort;
         String name;
 
+        intentItem = new Intent(this, AddItem.class);
+
         mAuth = FirebaseAuth.getInstance();
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -106,6 +110,8 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
 
         final ArrayAdapter<String> collectionAdapter = new ArrayAdapter<String>(Collection.this, R.layout.custom_list,R.id.text,collectionsList);
         lstvCollections.setAdapter(collectionAdapter);
+
+
         FirebaseDatabase.getInstance().getReference("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringCollections").addChildEventListener(new ChildEventListener() {
             @Override
@@ -165,33 +171,49 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
     }
 });
 */
-        lstvCollections.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lstvCollections.setOnItemClickListener(listClick);
 
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object o = lstvCollections.getItemAtPosition(position);
-                String str=(String)o;//As you are using Default String Adapter
 
-                char[] charArray = str.toCharArray();
-                String result = "";
 
-                // Traverse the character array
-                for (int i = 0; i < charArray.length; i++) {
-
-                    // Check if the specified character is not digit
-                    // then add this character into result variable
-                    if (!Character.isDigit(charArray[i])) {
-                        result = result + charArray[i];
-                    }
-                }
-
-                Intent i = new Intent(Collection.this, AddItem.class);
-                i.putExtra("Collection selected", (result).trim());
-                startActivity(i);
-
-            }
-        });
 
     }
+
+    private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
+
+        public void onItemClick(AdapterView parent, View view, int i, long l) {
+            String itemValue  = ((String) lstvCollections.getItemAtPosition(i)).trim();
+
+            char[] charArray = itemValue.toCharArray();
+            String result = ("");
+
+            for (int x = 0; x < charArray.length; x++) {
+
+                // Check if the specified character is not digit
+                // then add this character into result variable
+                if (!Character.isDigit(charArray[x])) {
+                    result = result + charArray[x];
+                }
+            }
+
+            char[] charArray1 = itemValue.toCharArray();
+            String result1 = ("");
+
+            for (int x = 0; x < charArray1.length; x++) {
+
+                // Check if the specified character is not digit
+                // then add this character into result variable
+                if (Character.isDigit(charArray1[x])) {
+                    result1 = result1 + charArray1[x];
+                }
+            }
+
+
+                intentItem.putExtra("Collection selected", result);
+                intentItem.putExtra("Collection selected Goal", result1);
+                 startActivity(intentItem);
+
+        }
+    };
 /*
     public void openAddItemMainPage() {
         Intent intent = new Intent(Collection.this,AddItem.class);

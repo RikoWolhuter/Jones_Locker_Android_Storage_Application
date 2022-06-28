@@ -38,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.awt.font.TextAttribute;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class AddCollection extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -154,8 +155,9 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
-                        String value = dataSnapshot.getValue(String.class);
-                        Medal_lvl =Integer.parseInt(value);
+
+                        Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
+                        Medal_lvl =Integer.parseInt(String.valueOf(map));
 
                         int Medal_lvl_Increase = Medal_lvl + 30;
                         String Medal_lvl_IncreaseString = Integer.toString(Medal_lvl_Increase);
