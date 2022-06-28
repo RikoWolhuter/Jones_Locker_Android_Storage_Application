@@ -102,6 +102,9 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item_main);
+
+
+
         ArrayAdapter_1();
 /*
         TextView NameOfColl = findViewById(R.id.CollName);
