@@ -42,9 +42,11 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
 
     private int Medal_lvl = 0;
     String CollectionItemClicked1;
+    String CollectionItemClicked2;
 
     String tempName;
     String tempDescription;
+    Intent intentAddItem;
 
     //variable to capture the amount of times a user has created an item, counter starts at 0, J-L
     int counter = 0;
@@ -78,8 +80,11 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item_details);
 
+        intentAddItem = new Intent(this, AddItem.class);
+
         Intent ThirdIntent = getIntent();
         CollectionItemClicked1 = ThirdIntent.getStringExtra("CollectionForItem");
+        CollectionItemClicked2 = ThirdIntent.getStringExtra("CollectionGoalForCollItem");
 
         toolbar = findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
@@ -127,11 +132,14 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
                                                    //Store Goal of Collection in tempGoal
                                                    tempDescription = Description1.getText().toString();
 
-                                                   Intent intent = new Intent(AddItemDetails.this, AddItem.class);
+
 
                                                    AddItemToCollectionToDatabase();
 
-                                                   startActivity(intent);
+                                                   intentAddItem.putExtra("Collection show", CollectionItemClicked1);
+                                                   intentAddItem.putExtra("CollectionGoal show", CollectionItemClicked2);
+                                                   startActivity(intentAddItem);
+
                                                    FirebaseDatabase.getInstance().getReference("Users")
                                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").addValueEventListener(new ValueEventListener() {
                                                        @Override
@@ -214,6 +222,22 @@ message.setText("Goal is not reached")
     }
 
     public void AddItemToCollectionToDatabase(){
+
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringItems").child(CollectionItemClicked1).child(tempName)
+                .setValue(tempName).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                }
+                else{
+                    Toast.makeText(AddItemDetails.this, "Name has not been added", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         FirebaseDatabase.getInstance().getReference("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(CollectionItemClicked1).child("Items").child(tempName).child("Name")
                 .setValue(tempName).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -241,6 +265,8 @@ message.setText("Goal is not reached")
                 }
             }
         });
+
+
     }
 
     @Override

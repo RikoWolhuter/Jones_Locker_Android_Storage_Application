@@ -73,6 +73,9 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
 
     Intent intentItem1;
     String CollectionItemClicked;
+    String CollectionItemClicked1;
+    String CollectionItemClicked2;
+    String CollectionItemClicked3;
 
 
 
@@ -109,15 +112,25 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
         intentItem1 = new Intent(this, AddItemDetails.class);
 
         Intent SecondIntent = getIntent();
+        Intent ThirdIntent = getIntent();
 
         CollectionItemClicked = SecondIntent.getStringExtra("Collection selected");
         TextView NameOfColl = (TextView) findViewById(R.id.CollName);
         NameOfColl.setText(CollectionItemClicked);
 
-        String CollectionItemClicked1 = SecondIntent.getStringExtra("Collection selected Goal");
+        CollectionItemClicked1 = SecondIntent.getStringExtra("Collection selected Goal");
         TextView GoalColl = (TextView) findViewById(R.id.GoalCollection);
         GoalColl.setText(CollectionItemClicked1);
-
+        if(NameOfColl.equals(null)) {
+            CollectionItemClicked2 = ThirdIntent.getStringExtra("Collection show");
+            NameOfColl = (TextView) findViewById(R.id.CollName);
+            NameOfColl.setText(CollectionItemClicked2);
+        }
+        if(NameOfColl.equals(null)) {
+            CollectionItemClicked3 = ThirdIntent.getStringExtra("CollectionGoal show");
+            GoalColl = (TextView) findViewById(R.id.GoalCollection);
+            GoalColl.setText(CollectionItemClicked3);
+        }
         ArrayAdapter_1();
 /*
         TextView NameOfColl = findViewById(R.id.CollName);
@@ -167,6 +180,7 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
             public void onClick(View view) {
 
                 intentItem1.putExtra("CollectionForItem", CollectionItemClicked);
+                intentItem1.putExtra("CollectionGoalForCollItem", CollectionItemClicked1);
                 startActivity(intentItem1);
 
             }
