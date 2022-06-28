@@ -171,8 +171,21 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
                 Object o = lstvCollections.getItemAtPosition(position);
                 String str=(String)o;//As you are using Default String Adapter
 
+                char[] charArray = str.toCharArray();
+                String result = "";
+
+                // Traverse the character array
+                for (int i = 0; i < charArray.length; i++) {
+
+                    // Check if the specified character is not digit
+                    // then add this character into result variable
+                    if (!Character.isDigit(charArray[i])) {
+                        result = result + charArray[i];
+                    }
+                }
+
                 Intent i = new Intent(Collection.this, AddItem.class);
-                i.putExtra("Collection selected", str);
+                i.putExtra("Collection selected", (result).trim());
                 startActivity(i);
 
             }

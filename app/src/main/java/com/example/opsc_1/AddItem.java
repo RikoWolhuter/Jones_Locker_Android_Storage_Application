@@ -70,6 +70,9 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     private String name;
     private String description;
 
+    Intent intent = getIntent();
+    String CollectionItemClicked = intent.getExtras().getString("Collection selected");
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
