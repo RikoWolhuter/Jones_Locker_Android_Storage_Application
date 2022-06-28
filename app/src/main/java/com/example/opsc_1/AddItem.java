@@ -58,6 +58,8 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     TextView NameOfColl;
     TextView GoalColl;
 
+    Intent intentItemDetails;
+
     String CollectionForStringDatabase = NameOfColl.getText().toString();
 
     private String nameItem;
@@ -221,7 +223,24 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
                 openItemDetailsDescriptionPage();
             }
         });*/
+
+        lstvCollections2.setOnItemClickListener(listClick);
     }
+
+    private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
+
+        public void onItemClick(AdapterView parent, View view, int i, long l) {
+            String itemValue  = ((String) lstvCollections2.getItemAtPosition(i)).trim();
+
+
+
+
+            intentItemDetails.putExtra("Item name", itemValue);
+            intentItemDetails.putExtra("Item Description", result1);
+            startActivity(intentItemDetails);
+
+        }
+    };
 
     public void ArrayAdapter_1() {
 
