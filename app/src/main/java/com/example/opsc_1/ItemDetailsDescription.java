@@ -71,10 +71,10 @@ public class ItemDetailsDescription extends AppCompatActivity implements Navigat
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         if (dataSnapshot.exists()) {
-                            NameTextView.setText(dataSnapshot.getValue(String.class));
+                            DescriptionTextView.setText(dataSnapshot.getValue(String.class));
                         }
                         else{
-                            NameTextView.setText("Not found");
+                            DescriptionTextView.setText("Not found");
                         }
                         //PassTextView.setText(password);
                         //EmailTextView.setText(gmail);
