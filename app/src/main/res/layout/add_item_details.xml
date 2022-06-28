@@ -69,12 +69,33 @@
                     android:layout_height="40dp" />
 
                 <EditText
+                    android:id="@+id/AddItemCollectionName"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Name of collection"
+                    android:inputType="textPersonName"
+                    android:textColor="#807575"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.432"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.346"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+
+                <EditText
                     android:id="@+id/NameOfItem"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="center"
-                    android:hint="Add a Name"
+                    android:hint="Add a name for the Item"
                     android:inputType="textPersonName"
                     android:textColor="#807575"
                     app:layout_constraintBottom_toBottomOf="parent"

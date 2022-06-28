@@ -12,9 +12,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -163,6 +165,19 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
     }
 });
 */
+        lstvCollections.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object o = lstvCollections.getItemAtPosition(position);
+                String str=(String)o;//As you are using Default String Adapter
+
+                Intent i = new Intent(Collection.this, AddItem.class);
+                i.putExtra("Collection selected", str);
+                startActivity(i);
+
+            }
+        });
+
     }
 /*
     public void openAddItemMainPage() {
@@ -198,6 +213,8 @@ public class Collection extends AppCompatActivity implements NavigationView.OnNa
             super.onBackPressed();
         }
     }
+
+
 
 
 
