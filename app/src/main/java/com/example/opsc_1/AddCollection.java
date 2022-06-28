@@ -150,7 +150,7 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
                 AddCollectionToDatabase();
 
                 FirebaseDatabase.getInstance().getReference("Users")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").child("Medal_Level").addValueEventListener(new ValueEventListener() {
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         // This method is called once with the initial value and again
@@ -159,25 +159,27 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
                         //Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
                         Medal_lvl =Integer.parseInt(String.valueOf(value));
 
-                        int Medal_lvl_Increase = Medal_lvl + 30;
-                        String Medal_lvl_IncreaseString = Integer.toString(Medal_lvl_Increase);
 
-                        HashMap hashMap = new HashMap();
-                        hashMap.put("Medal_Level",Medal_lvl_IncreaseString);
-
-                        FirebaseDatabase.getInstance().getReference("Users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level")
-                                .updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
-                            @Override
-                            public void onSuccess(Object o) {
-
-                            }
-                        });
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Log.w("TAG", "Failed to read value.", error.toException());
+                    }
+                });
+
+                int Medal_lvl_Increase = Medal_lvl + 30;
+                String Medal_lvl_IncreaseString = Integer.toString(Medal_lvl_Increase);
+
+                HashMap hashMap = new HashMap();
+                hashMap.put("Medal_Level",Medal_lvl_IncreaseString);
+
+                FirebaseDatabase.getInstance().getReference("Users")
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").child("Medal_Level")
+                        .updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                    @Override
+                    public void onSuccess(Object o) {
+
                     }
                 });
 

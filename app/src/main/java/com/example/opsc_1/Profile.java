@@ -85,7 +85,7 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
 
 
         FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").addValueEventListener(new ValueEventListener() {
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").child("Medal_Level").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again

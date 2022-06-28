@@ -8,13 +8,13 @@ android:layout_height="match_parent">
 
 
     <com.google.android.material.navigation.NavigationView
-    android:id="@+id/nav_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-    android:layout_gravity="start"
-    android:fitsSystemWindows="true"
-    app:menu="@menu/menu">
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>
 
@@ -60,7 +60,7 @@ android:layout_height="match_parent">
                         app:srcCompat="@drawable/photo_placeholder" />
                 </androidx.cardview.widget.CardView>
 
-                <Space
+                <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
@@ -73,7 +73,7 @@ android:layout_height="match_parent">
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <Space
+                <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
@@ -81,9 +81,10 @@ android:layout_height="match_parent">
                     android:id="@+id/Name"
                     android:layout_width="332dp"
                     android:layout_height="41dp"
-                    android:hint="Enter name here" />
+                    android:hint="Enter name here"
+                    tools:ignore="TouchTargetSizeCheck" />
 
-                <Space
+                <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
@@ -96,7 +97,7 @@ android:layout_height="match_parent">
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <Space
+                <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
@@ -104,32 +105,10 @@ android:layout_height="match_parent">
                     android:id="@+id/Password"
                     android:layout_width="332dp"
                     android:layout_height="41dp"
-                    android:hint="Enter password" />
+                    android:hint="Enter password"
+                    tools:ignore="TouchTargetSizeCheck" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Age:"
-                    android:textColor="#131313"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/DoB"
-                    android:layout_width="332dp"
-                    android:layout_height="41dp"
-                    android:hint="Enter your age" />
-
-                <Space
+                <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
@@ -142,7 +121,7 @@ android:layout_height="match_parent">
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <Space
+                <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
@@ -150,29 +129,10 @@ android:layout_height="match_parent">
                     android:id="@+id/Email"
                     android:layout_width="332dp"
                     android:layout_height="41dp"
-                    android:hint="Enter your email" />
+                    android:hint="Enter your email"
+                    tools:ignore="TouchTargetSizeCheck" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Level:"
-                    android:textColor="#131313"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textViewLevel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4"
-                    android:textSize="20sp" />
-
-                <Space
+                <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
@@ -185,7 +145,7 @@ android:layout_height="match_parent">
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <Space
+                <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
@@ -195,67 +155,7 @@ android:layout_height="match_parent">
                     android:layout_height="wrap_content"
                     tools:srcCompat="@tools:sample/avatars" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/xp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="XP:"
-                    android:textColor="#131313"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/xp_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="565"
-                    android:textSize="20sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/coll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Amount of Collections:"
-                    android:textColor="#131313"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/amount_coll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4"
-                    android:textSize="20sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/Items"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Amount of items:"
-                    android:textColor="#131313"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/amount_items"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="27"
-                    android:textSize="20sp" />
-
-                <Space
+                <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
@@ -270,7 +170,7 @@ android:layout_height="match_parent">
                     android:textColor="#FFFFFF"
                     android:textSize="12sp" />
 
-                <Space
+                <androidx.legacy.widget.Space
                     android:layout_width="match_parent"
                     android:layout_height="20dp" />
 
