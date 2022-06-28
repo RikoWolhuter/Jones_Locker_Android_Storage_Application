@@ -31,6 +31,9 @@ public class ItemDetailsDescription extends AppCompatActivity implements Navigat
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
 
+    String CollectionItemClicked4;
+    String CollectionItemClicked5;
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
@@ -61,11 +64,19 @@ public class ItemDetailsDescription extends AppCompatActivity implements Navigat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details_description);
 
+        Intent FourthIntent = getIntent();
+
+        CollectionItemClicked4 = FourthIntent.getStringExtra("Item name");
+        CollectionItemClicked5 = FourthIntent.getStringExtra("collection");
+
         final TextView NameTextView = (TextView) findViewById(R.id.Name_Description);
         final TextView DescriptionTextView = (TextView) findViewById(R.id.Description_Description);
 
+        NameTextView.setText(CollectionItemClicked4);
+
+
         FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(CollectionItemClicked1).child("Items").child(tempDescription).child("Description")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(CollectionItemClicked5).child("Items").child(CollectionItemClicked4).child("Description")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

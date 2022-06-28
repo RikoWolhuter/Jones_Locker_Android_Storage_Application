@@ -239,7 +239,7 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
 
 
             intentItemDetails.putExtra("Item name", itemValue);
-            intentItemDetails.putExtra("Item Description", result1);
+            intentItemDetails.putExtra("collection", CollectionForStringDatabase);
             startActivity(intentItemDetails);
 
         }
