@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,7 +19,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +41,10 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
     ImageView ImageGallery;
 
     private int Medal_lvl = 0;
+    String CollectionItemClicked1;
+
+    String tempName;
+    String tempDescription;
 
     //variable to capture the amount of times a user has created an item, counter starts at 0, J-L
     int counter = 0;
@@ -70,6 +77,9 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item_details);
+
+        Intent ThirdIntent = getIntent();
+        CollectionItemClicked1 = ThirdIntent.getStringExtra("CollectionForItem");
 
         toolbar = findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
@@ -106,18 +116,20 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
                                                public  void onClick(View v) {
 
 
+
+
                                                    EditText name1 = findViewById(R.id.NameOfItem);
                                                    //Goal of the Collection added by user
                                                    EditText Description1 = findViewById(R.id.Description);
 
 
-                                                   String tempName = name1.getText().toString();
+                                                   tempName = name1.getText().toString();
                                                    //Store Goal of Collection in tempGoal
-                                                   String tempDescription = Description1.getText().toString();
+                                                   tempDescription = Description1.getText().toString();
 
                                                    Intent intent = new Intent(AddItemDetails.this, AddItem.class);
 
-
+                                                   AddItemToCollectionToDatabase();
 
                                                    startActivity(intent);
                                                    FirebaseDatabase.getInstance().getReference("Users")
@@ -129,20 +141,7 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
                                                            String value = dataSnapshot.getValue(String.class);
                                                            Medal_lvl =Integer.parseInt(value);
 
-                                                           int Medal_lvl_Increase = Medal_lvl + 30;
-                                                           String Medal_lvl_IncreaseString = Integer.toString(Medal_lvl_Increase);
 
-                                                           HashMap hashMap = new HashMap();
-                                                           hashMap.put("Medal_Level",Medal_lvl_IncreaseString);
-
-                                                           FirebaseDatabase.getInstance().getReference("Users")
-                                                                   .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level")
-                                                                   .updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
-                                                               @Override
-                                                               public void onSuccess(Object o) {
-
-                                                               }
-                                                           });
                                                        }
 
                                                        @Override
@@ -151,6 +150,21 @@ public class AddItemDetails extends AppCompatActivity implements NavigationView.
                                                        }
                                                    });
                                                    finish();
+
+                                                   int Medal_lvl_Increase = Medal_lvl + 30;
+                                                   String Medal_lvl_IncreaseString = Integer.toString(Medal_lvl_Increase);
+
+                                                   HashMap hashMap = new HashMap();
+                                                   hashMap.put("Medal_Level",Medal_lvl_IncreaseString);
+
+                                                   FirebaseDatabase.getInstance().getReference("Users")
+                                                           .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level")
+                                                           .updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                                                       @Override
+                                                       public void onSuccess(Object o) {
+
+                                                       }
+                                                   });
                                                }
                                                });
     }
@@ -197,6 +211,36 @@ message.setText("Goal is not reached")
                 }*/
             }
         }
+    }
+
+    public void AddItemToCollectionToDatabase(){
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(CollectionItemClicked1).child("Items").child(tempName).child("Name")
+                .setValue(tempName).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                }
+                else{
+                    Toast.makeText(AddItemDetails.this, "Name has not been added", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(CollectionItemClicked1).child("Items").child(tempDescription).child("Description")
+                .setValue(tempDescription).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                }
+                else{
+                    Toast.makeText(AddItemDetails.this, "Name has not been added", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     @Override

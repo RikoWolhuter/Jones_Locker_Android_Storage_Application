@@ -71,6 +71,9 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     private String name;
     private String description;
 
+    Intent intentItem1;
+    String CollectionItemClicked;
+
 
 
 
@@ -103,9 +106,11 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item_main);
 
+        intentItem1 = new Intent(this, AddItemDetails.class);
+
         Intent SecondIntent = getIntent();
 
-        String CollectionItemClicked = SecondIntent.getStringExtra("Collection selected");
+        CollectionItemClicked = SecondIntent.getStringExtra("Collection selected");
         TextView NameOfColl = (TextView) findViewById(R.id.CollName);
         NameOfColl.setText(CollectionItemClicked);
 
@@ -161,9 +166,9 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
             @Override
             public void onClick(View view) {
 
+                intentItem1.putExtra("CollectionForItem", CollectionItemClicked);
+                startActivity(intentItem1);
 
-
-                openAddItemPage();
             }
         });
 
@@ -235,10 +240,7 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
      */
 
 
-    public void openAddItemPage() {
-        Intent intent = new Intent(AddItem.this, AddItemDetails.class);
-        startActivity(intent);
-    }
+
 
     public void openSortListview_Item_Page() {
         Intent intent = new Intent(AddItem.this, sortListviewItem.class);//sort listview class for Items
