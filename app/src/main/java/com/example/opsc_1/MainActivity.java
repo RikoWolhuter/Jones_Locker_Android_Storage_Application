@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -96,10 +97,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 IntentHelper.openIntent(this, AddPhoto.class);
                 break;
             case R.id.imageView7:
-                IntentHelper.openIntent(this, Graph.class);
+                IntentHelper.openIntent(this, Goal.class);
                 break;
             case R.id.imageView8:
-                IntentHelper.openIntent(this, Goal.class);
+                IntentHelper.openIntent(this, Graph.class);
                 break;
         }
 
