@@ -1,13 +1,26 @@
 package com.example.opsc_1;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -21,6 +34,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Graph extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     GraphView graphView;
@@ -28,6 +44,8 @@ public class Graph extends AppCompatActivity implements NavigationView.OnNavigat
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggleOnOff;
     private NavigationView navigationView;
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -75,38 +93,31 @@ public class Graph extends AppCompatActivity implements NavigationView.OnNavigat
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(new DataPoint[]{
-                // on below line we are adding
-                // each point on our x and y axis.
-                new DataPoint(0, 1),
-                new DataPoint(1, 3),
-                new DataPoint(2, 4),
-                new DataPoint(3, 9),
-                new DataPoint(4, 6),
-                new DataPoint(5, 3),
-                new DataPoint(6, 6),
-                new DataPoint(7, 1),
-                new DataPoint(8, 2)
-        });
 
-        // after adding data to our line graph series.
-        // on below line we are setting
-        // title for our graph view.
+        BarChart barChart = findViewById(R.id.bar_chart);
+
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(1,10));
+        barEntries.add(new BarEntry(2,20));
+        barEntries.add(new BarEntry(3,90));
+        barEntries.add(new BarEntry(4,40));
+        barEntries.add(new BarEntry(5,60));
+        barEntries.add(new BarEntry(6,15));
+        barEntries.add(new BarEntry(7,70));
 
 
-        //graphView.setTitle("Goal progression"); HAS A BUG THAT NEEDS FIXING
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Items");
+        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        barDataSet.setValueTextColor(Color.BLACK);
+        barDataSet.setValueTextSize(16f);
+        BarData barData = new BarData(barDataSet);
 
-        // on below line we are setting
-        // text color to our graph view.
+        barChart.setFitBars(true);
+        barChart.setData(barData);
+        barChart.getDescription().setText("Collection");
+        barChart.animateY(2000);
 
-        //graphView.setTitleColor(R.color.purple_200); HAS A BUG THAT NEEDS FIXING
 
-        // on below line we are setting
-        // our title text size.
-
-        //graphView.setTitleTextSize(18); HAS A BUG THAT NEEDS FIXING
-
-        //graphView.addSeries(series); HAS A BUG THAT NEEDS FIXING
     }
 
     @Override

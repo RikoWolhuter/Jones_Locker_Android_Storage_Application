@@ -23,6 +23,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/nav_toolbar"
             android:layout_width="match_parent"
@@ -34,12 +36,12 @@
             app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body2"
             app:subtitleTextColor="#000000"
             app:titleMargin="4dp" />
-
-        <com.jjoe64.graphview.GraphView
-            android:id="@+id/idGraphView"
+        <com.github.mikephil.charting.charts.BarChart
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" />
+            android:layout_height="400dp"
+            android:id="@+id/bar_chart"
+            ></com.github.mikephil.charting.charts.BarChart>
+
 
     </LinearLayout>
 
