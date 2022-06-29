@@ -242,10 +242,10 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
 
         public void onItemClick(AdapterView parent, View view, int i, long l) {
             String itemValue  = ((String) lstvCollections2.getItemAtPosition(i)).trim();
+            String str1 = NameOfColl.getText().toString();
 
 
-
-
+            intentItem.putExtra("NameOfCollection", str1);
             intentItem.putExtra("NameOfItem", itemValue);
 
             startActivity(intentItem);
