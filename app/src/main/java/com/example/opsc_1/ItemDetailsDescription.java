@@ -73,7 +73,7 @@ public class ItemDetailsDescription extends AppCompatActivity implements Navigat
         final TextView DescriptionTextView = (TextView) findViewById(R.id.Description_Description);
 
         NameTextView.setText(CollectionItemClicked4);
-        DescriptionTextView.setText();
+        // DescriptionTextView.setText();
 
 
         FirebaseDatabase.getInstance().getReference("Users")
