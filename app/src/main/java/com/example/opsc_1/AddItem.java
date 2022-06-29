@@ -258,9 +258,10 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
         final ArrayAdapter<String> collectionAdapter = new ArrayAdapter<String>(AddItem.this, R.layout.custom_list_1,R.id.text_item,itemList);
         lstvCollections2.setAdapter(collectionAdapter);
 
-//263
+        String str1 = NameOfColl.getText().toString();
+
         FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringItems").addChildEventListener(new ChildEventListener() {
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringItems").child(str1).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String value = snapshot.getValue(String.class);

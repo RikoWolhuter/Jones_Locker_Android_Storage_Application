@@ -225,7 +225,7 @@ message.setText("Goal is not reached")
 
 
         FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringItems").child(tempName)
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringItems").child(CollectionItemClicked1).child("NameOfItem")
                 .setValue(tempName).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -233,7 +233,7 @@ message.setText("Goal is not reached")
 
                 }
                 else{
-                    Toast.makeText(AddItemDetails.this, "Name has not been added", Toast.LENGTH_LONG).show();
+
                 }
             }
         });
@@ -247,7 +247,7 @@ message.setText("Goal is not reached")
 
                 }
                 else{
-                    Toast.makeText(AddItemDetails.this, "Name has not been added", Toast.LENGTH_LONG).show();
+
                 }
             }
         });
@@ -261,7 +261,7 @@ message.setText("Goal is not reached")
 
                 }
                 else{
-                    Toast.makeText(AddItemDetails.this, "Name has not been added", Toast.LENGTH_LONG).show();
+
                 }
             }
         });
