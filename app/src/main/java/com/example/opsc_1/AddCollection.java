@@ -150,33 +150,30 @@ public class AddCollection extends AppCompatActivity implements NavigationView.O
                 AddCollectionToDatabase();
 
                 FirebaseDatabase.getInstance().getReference("Users")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").addValueEventListener(new ValueEventListener() {
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        String value = dataSnapshot.getValue(String.class);
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String value = snapshot.getValue(String.class);
                         //Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
-                        Medal_lvl =Integer.parseInt(String.valueOf(value));
-
-
+                        Medal_lvl =Integer.parseInt(value);
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Log.w("TAG", "Failed to read value.", error.toException());
+
                     }
                 });
+
 
                 int Medal_lvl_Increase = Medal_lvl + 30;
                 String Medal_lvl_IncreaseString = Integer.toString(Medal_lvl_Increase);
 
-                HashMap hashMap = new HashMap();
-                hashMap.put("Medal_Level",Medal_lvl_IncreaseString);
+                //HashMap hashMap = new HashMap();
+                //hashMap.put("Medal_Level",Medal_lvl_IncreaseString);
 
                 FirebaseDatabase.getInstance().getReference("Users")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level").child("Medal_Level")
-                        .updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Medal_Level")
+                        .setValue(Medal_lvl_IncreaseString).addOnSuccessListener(new OnSuccessListener() {
                     @Override
                     public void onSuccess(Object o) {
 
