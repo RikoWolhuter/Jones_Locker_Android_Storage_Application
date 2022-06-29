@@ -59,6 +59,7 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     TextView GoalColl;
 
     Intent intentItemDetails;
+    Intent intentItem;
 
 
 
@@ -130,6 +131,7 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
 
         intentItem1 = new Intent(this, AddItemDetails.class);
         intentItemDetails = new Intent(this, ItemDetailsDescription.class);
+        intentItem = new Intent(this, ItemDetailsDescription.class);
 
         Intent SecondIntent = getIntent();
         Intent ThirdIntent = getIntent();
@@ -230,21 +232,23 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
         });*/
 
         lstvCollections2.setOnItemClickListener(listClick);
+
+
+
+
     }
 
     private AdapterView.OnItemClickListener listClick = new AdapterView.OnItemClickListener() {
 
         public void onItemClick(AdapterView parent, View view, int i, long l) {
             String itemValue  = ((String) lstvCollections2.getItemAtPosition(i)).trim();
-            //CollectionForStringDatabase
 
 
 
 
+            intentItem.putExtra("NameOfItem", itemValue);
 
-            intentItemDetails.putExtra("Item name", itemValue);
-            //intentItemDetails.putExtra("collection", CollectionForStringDatabase);
-            startActivity(intentItemDetails);
+            startActivity(intentItem);
 
         }
     };
