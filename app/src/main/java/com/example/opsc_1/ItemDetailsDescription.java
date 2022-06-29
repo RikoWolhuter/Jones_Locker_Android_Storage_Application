@@ -72,8 +72,22 @@ public class ItemDetailsDescription extends AppCompatActivity implements Navigat
         final TextView NameTextView = (TextView) findViewById(R.id.Name_Description);
         final TextView DescriptionTextView = (TextView) findViewById(R.id.Description_Description);
 
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(CollectionItemClicked5).child("Items").child(CollectionItemClicked4).child("Description").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value5 =  snapshot.getValue(String.class);
+                DescriptionTextView.setText(value5);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         NameTextView.setText(CollectionItemClicked4);
-        // DescriptionTextView.setText();
+
 
 
         FirebaseDatabase.getInstance().getReference("Users")
