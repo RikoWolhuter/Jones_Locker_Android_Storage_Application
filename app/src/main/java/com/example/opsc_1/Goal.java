@@ -89,6 +89,7 @@ public class Goal extends AppCompatActivity implements NavigationView.OnNavigati
         lstvCollections3 = (ListView) findViewById(R.id.listview_Goals);
 
        // ArrayAdapter_1();
+        /*
         final ArrayAdapter<String> collectionAdapter = new ArrayAdapter<String>(Goal.this, R.layout.custom_list_2,R.id.text_item1,collectionsList);
         lstvCollections3.setAdapter(collectionAdapter);
         FirebaseDatabase.getInstance().getReference("Users")
@@ -124,6 +125,44 @@ public class Goal extends AppCompatActivity implements NavigationView.OnNavigati
 
             }
         });
+        */
+
+        collectionsList = new ArrayList<>();
+        lstvCollections = (ListView) findViewById(R.id.listview_Goals);
+
+
+        final ArrayAdapter<String> collectionAdapter = new ArrayAdapter<String>(Goal.this, R.layout.custom_list_2,R.id.text_item1,collectionsList);
+        lstvCollections.setAdapter(collectionAdapter);
+
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringCollections").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                String value = snapshot.getValue(String.class);
+                collectionsList.add(value);
+                collectionAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                collectionAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -136,7 +175,7 @@ public class Goal extends AppCompatActivity implements NavigationView.OnNavigati
             super.onBackPressed();
         }
     }
-
+/*
     public void ArrayAdapter_1() {
         lstvCollections3 = (ListView) findViewById(R.id.listview_Goals);
 
@@ -151,4 +190,6 @@ public class Goal extends AppCompatActivity implements NavigationView.OnNavigati
 
         lstvCollections3.setAdapter(acAdp1);
     }
+
+ */
 }

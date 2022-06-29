@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:text="Lost Surfboard"
                     android:textColor="#131313"
-                    android:textSize="20sp"
+                    android:textSize="40sp"
                     android:textStyle="bold" />
 
                 <Space
@@ -130,7 +130,7 @@
                     android:orientation="horizontal">
 
                     <Space
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="10dp" />
 
                     <Button

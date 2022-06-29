@@ -1,6 +1,7 @@
 package com.example.opsc_1;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,7 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -24,6 +29,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
+
 public class ItemDetailsDescription extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
@@ -33,6 +40,9 @@ public class ItemDetailsDescription extends AppCompatActivity implements Navigat
 
     String CollectionItemClicked4;
     String CollectionItemClicked5;
+
+    TextView NameTextView;
+    TextView DescriptionTextView;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -59,6 +69,7 @@ public class ItemDetailsDescription extends AppCompatActivity implements Navigat
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +80,18 @@ public class ItemDetailsDescription extends AppCompatActivity implements Navigat
         CollectionItemClicked4 = FourthIntent.getStringExtra("NameOfItem");
         CollectionItemClicked5 = FourthIntent.getStringExtra("NameOfCollection");
 
-        final TextView NameTextView = (TextView) findViewById(R.id.Name_Description);
-        final TextView DescriptionTextView = (TextView) findViewById(R.id.Description_Description);
+
+
+
+
+        NameTextView = (TextView) findViewById(R.id.Name_Description);
+        DescriptionTextView = (TextView) findViewById(R.id.Description_Description);
+
+
+
+
+        final TextView Date = (TextView) findViewById(R.id.textView12);
+        Date.setText("2022/06/29");
 
         FirebaseDatabase.getInstance().getReference("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Collections").child(CollectionItemClicked5).child("Items").child(CollectionItemClicked4).child("Description").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -87,6 +108,7 @@ public class ItemDetailsDescription extends AppCompatActivity implements Navigat
         });
 
         NameTextView.setText(CollectionItemClicked4);
+
 
 
 
