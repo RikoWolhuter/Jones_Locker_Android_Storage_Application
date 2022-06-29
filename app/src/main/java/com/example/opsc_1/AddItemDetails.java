@@ -225,7 +225,7 @@ message.setText("Goal is not reached")
 
 
         FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringItems").child(CollectionItemClicked1).child(tempName)
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringItems").child(tempName)
                 .setValue(tempName).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

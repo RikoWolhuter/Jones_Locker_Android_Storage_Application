@@ -60,7 +60,7 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
 
     Intent intentItemDetails;
 
-    String CollectionForStringDatabase = NameOfColl.getText().toString();
+
 
     private String nameItem;
     private String goalItem;
@@ -86,6 +86,8 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     String CollectionItemClicked1;
     String CollectionItemClicked2;
     String CollectionItemClicked3;
+
+    String CollectionForStringDatabase = CollectionItemClicked;
 
     private FirebaseUser user;
     private String userID;
@@ -149,6 +151,8 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
             GoalColl = (TextView) findViewById(R.id.GoalCollection);
             GoalColl.setText(CollectionItemClicked3);
         }
+
+
         ArrayAdapter_1();
 /*
         TextView NameOfColl = findViewById(R.id.CollName);
@@ -239,7 +243,7 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
 
 
             intentItemDetails.putExtra("Item name", itemValue);
-            intentItemDetails.putExtra("collection", CollectionForStringDatabase);
+            //intentItemDetails.putExtra("collection", CollectionForStringDatabase);
             startActivity(intentItemDetails);
 
         }
@@ -248,15 +252,15 @@ public class AddItem extends AppCompatActivity implements NavigationView.OnNavig
     public void ArrayAdapter_1() {
 
         itemList = new ArrayList<>();
-        lstvCollections2 = (ListView) findViewById(R.id.lstv_collections_1);
+        lstvCollections2 = (ListView) findViewById(R.id.lstv_items);
 
 
         final ArrayAdapter<String> collectionAdapter = new ArrayAdapter<String>(AddItem.this, R.layout.custom_list_1,R.id.text_item,itemList);
         lstvCollections2.setAdapter(collectionAdapter);
 
-
+//263
         FirebaseDatabase.getInstance().getReference("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringItems").child(CollectionForStringDatabase).addChildEventListener(new ChildEventListener() {
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("StringItems").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String value = snapshot.getValue(String.class);
